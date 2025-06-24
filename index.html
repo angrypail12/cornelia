@@ -2866,6 +2866,8 @@ const dataToSave = {
     // Function to calculate current and longest streaks, excluding weekends
     function calculateStreaks() {
         const today = new Date();
+        const todayDateStr = formatDateKey(today);
+        const currentHour = today.getHours();
         
         // Sort all dates from calendar data
         const dates = Object.keys(calendarData)
@@ -2932,9 +2934,40 @@ const dataToSave = {
             
             // Skip weekends
             if (dayOfWeek !== 0 && dayOfWeek !== 6) {
+                const isToday = dateStr === todayDateStr;
+                
                 if (calendarData[dateStr] && calendarData[dateStr].isComplete) {
                     currentStreak++;
+                } else if (isToday) {
+                    // Special handling for today - don't break streak unless it's late in the day
+                    // and still not complete, OR if tasks have been started but not finished
+                    const todayData = calendarData[dateStr];
+                    
+                    if (!todayData) {
+                        // No data for today yet - don't break streak in the morning
+                        if (currentHour < 18) {
+                            // It's still early, don't break the streak
+                            // Continue checking previous days
+                        } else {
+                            // It's late and no progress made - break streak
+                            foundIncomplete = true;
+                            break;
+                        }
+                    } else if (todayData.percentage === 0) {
+                        // Tasks were reset but not started - don't break streak in the morning
+                        if (currentHour < 18) {
+                            // It's still early, don't break the streak
+                        } else {
+                            // It's late and no progress made - break streak
+                            foundIncomplete = true;
+                            break;
+                        }
+                    } else {
+                        // Some progress made but not complete - don't break streak yet
+                        // This allows for work-in-progress days
+                    }
                 } else {
+                    // Previous day wasn't completed - break streak
                     foundIncomplete = true;
                     break;
                 }
