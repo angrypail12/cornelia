@@ -1219,7 +1219,7 @@ input:checked + .slider:before {
         </div>
     </div>
           
-          <!-- ADD THE DEADLINE CONTAINER HERE -->
+          <!-- Deadline Container -->
     <div class="deadline-container">
         <div class="deadline-row">
             <div class="deadline-field">
@@ -1236,30 +1236,8 @@ input:checked + .slider:before {
     <div class="common-fields">
         <div class="field-row">
             <div class="field-container">
-                <label for="sceneTitle">Title</label>
+                <label for="sceneTitle">Scene/Chapter Title</label>
                 <input type="text" id="sceneTitle" class="scene-input" placeholder="Scene title...">
-            </div>
-        </div>
-        <div class="field-row">
-            <div class="field-container">
-                <label for="sceneSynopsis">Synopsis</label>
-                <textarea id="sceneSynopsis" class="scene-textarea" placeholder="Brief summary of the scene..."></textarea>
-            </div>
-        </div>
-        <div class="field-row multi-field">
-            <div class="field-container">
-                <label for="sceneTime">Time</label>
-                <input type="text" id="sceneTime" class="scene-input" placeholder="When...">
-            </div>
-            <div class="field-container">
-                <label for="sceneWeather">Weather</label>
-                <input type="text" id="sceneWeather" class="scene-input" placeholder="Conditions...">
-            </div>
-        </div>
-        <div class="field-row">
-            <div class="field-container">
-                <label for="sceneCharacters">Characters</label>
-                <input type="text" id="sceneCharacters" class="scene-input" placeholder="Who's in the scene...">
             </div>
         </div>
         <div class="field-row">
@@ -1559,75 +1537,76 @@ input:checked + .slider:before {
         logDebug('All tags cleared');
     }
     
-      // ADD THE DEADLINE FUNCTIONS HERE
-// Deadline management functions
-function updateDeadlineStatus() {
-    const deadlineInput = document.getElementById('sceneDeadline');
-    const deadlineStatus = document.getElementById('deadlineStatus');
-    const deadlineText = document.getElementById('deadlineText');
-    
-    if (!deadlineInput || !deadlineStatus || !deadlineText) return;
-    
-    const deadlineValue = deadlineInput.value;
-    
-    if (!deadlineValue) {
-        deadlineStatus.className = 'deadline-status upcoming';
-        deadlineText.textContent = 'No deadline set';
-        return;
-    }
-    
-    // Create deadline date at 5pm
-    const deadlineDate = new Date(deadlineValue + 'T17:00:00');
-    const now = new Date();
-    const timeDiff = deadlineDate - now;
-    const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-    
-    // Remove all status classes
-    deadlineStatus.className = 'deadline-status';
-    
-    if (timeDiff < 0) {
-        // Past deadline
-        deadlineStatus.classList.add('late');
-        deadlineText.innerHTML = '<i class="fas fa-exclamation-triangle deadline-icon"></i> LATE!';
-    } else if (daysDiff <= 1) {
-        // Due today or tomorrow
-        deadlineStatus.classList.add('urgent');
-        if (daysDiff === 0) {
-            const hoursLeft = Math.ceil(timeDiff / (1000 * 60 * 60));
-            deadlineText.innerHTML = `<i class="fas fa-fire deadline-icon"></i> Due in ${hoursLeft}h`;
-        } else {
-            deadlineText.innerHTML = '<i class="fas fa-fire deadline-icon"></i> Due tomorrow';
+    // FIXED DEADLINE FUNCTIONS - Now uses 11:59pm as deadline time
+    function updateDeadlineStatus() {
+        const deadlineInput = document.getElementById('sceneDeadline');
+        const deadlineStatus = document.getElementById('deadlineStatus');
+        const deadlineText = document.getElementById('deadlineText');
+        
+        if (!deadlineInput || !deadlineStatus || !deadlineText) return;
+        
+        const deadlineValue = deadlineInput.value;
+        
+        if (!deadlineValue) {
+            deadlineStatus.className = 'deadline-status upcoming';
+            deadlineText.textContent = 'No deadline set';
+            return;
         }
-    } else if (daysDiff <= 3) {
-        // Due soon (2-3 days)
-        deadlineStatus.classList.add('soon');
-        deadlineText.innerHTML = `<i class="fas fa-clock deadline-icon"></i> ${daysDiff} days left`;
-    } else {
-        // Plenty of time
-        deadlineStatus.classList.add('upcoming');
-        deadlineText.innerHTML = `<i class="fas fa-calendar-check deadline-icon"></i> ${daysDiff} days left`;
+        
+        // Create deadline date at 11:59:59 PM
+        const deadlineDate = new Date(deadlineValue + 'T23:59:59');
+        const now = new Date();
+        const timeDiff = deadlineDate - now;
+        const hoursDiff = Math.ceil(timeDiff / (1000 * 60 * 60));
+        const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+        
+        // Remove all status classes
+        deadlineStatus.className = 'deadline-status';
+        
+        if (timeDiff < 0) {
+            // Past deadline
+            deadlineStatus.classList.add('late');
+            deadlineText.innerHTML = '<i class="fas fa-exclamation-triangle deadline-icon"></i> LATE!';
+        } else if (hoursDiff <= 24) {
+            // Due today or within 24 hours
+            deadlineStatus.classList.add('urgent');
+            if (hoursDiff <= 1) {
+                deadlineText.innerHTML = '<i class="fas fa-fire deadline-icon"></i> Due in 1h';
+            } else if (hoursDiff <= 12) {
+                deadlineText.innerHTML = `<i class="fas fa-fire deadline-icon"></i> Due in ${hoursDiff}h`;
+            } else {
+                deadlineText.innerHTML = '<i class="fas fa-fire deadline-icon"></i> Due today';
+            }
+        } else if (daysDiff <= 3) {
+            // Due soon (2-3 days)
+            deadlineStatus.classList.add('soon');
+            deadlineText.innerHTML = `<i class="fas fa-clock deadline-icon"></i> ${daysDiff} days left`;
+        } else {
+            // Plenty of time
+            deadlineStatus.classList.add('upcoming');
+            deadlineText.innerHTML = `<i class="fas fa-calendar-check deadline-icon"></i> ${daysDiff} days left`;
+        }
+        
+        logDebug(`Deadline status updated: ${daysDiff} days left, ${hoursDiff} hours left`);
     }
-    
-    logDebug(`Deadline status updated: ${daysDiff} days left`);
-}
 
-function setupDeadlineListeners() {
-    const deadlineInput = document.getElementById('sceneDeadline');
-    
-    if (deadlineInput) {
-        deadlineInput.addEventListener('change', function() {
-            sceneDeadline = this.value;
+    function setupDeadlineListeners() {
+        const deadlineInput = document.getElementById('sceneDeadline');
+        
+        if (deadlineInput) {
+            deadlineInput.addEventListener('change', function() {
+                sceneDeadline = this.value;
+                updateDeadlineStatus();
+                logDebug('Scene deadline changed: ' + sceneDeadline);
+            });
+            
+            // Update status immediately on load
             updateDeadlineStatus();
-            logDebug('Scene deadline changed: ' + sceneDeadline);
-        });
-        
-        // Update status immediately on load
-        updateDeadlineStatus();
-        
-        // Update status every minute to keep time-sensitive info current
-        setInterval(updateDeadlineStatus, 60000);
+            
+            // Update status every minute to keep time-sensitive info current
+            setInterval(updateDeadlineStatus, 60000);
+        }
     }
-}
       
     // Loading indicator functions
     function showLoading() {
@@ -1893,12 +1872,12 @@ function setupDeadlineListeners() {
     }
 
     function setupIntentionListeners() {
-    // Set up scene listeners
-    setupSceneListeners();
-    
-    // Set up deadline listeners
-    setupDeadlineListeners();
-}
+        // Set up scene listeners
+        setupSceneListeners();
+        
+        // Set up deadline listeners
+        setupDeadlineListeners();
+    }
     
     function setupSceneListeners() {
         const sceneSwitchEl = document.getElementById('sceneTypeSwitch');
@@ -1978,12 +1957,8 @@ function setupDeadlineListeners() {
     function saveSceneData() {
         logDebug('===== SAVE SCENE DATA FUNCTION CALLED =====');
         
-        // Get common field values
+        // Get common field values - REMOVED synopsis, time, weather, characters
         const sceneTitle = document.getElementById('sceneTitle').value;
-        const sceneSynopsis = document.getElementById('sceneSynopsis').value;
-        const sceneTime = document.getElementById('sceneTime').value;
-        const sceneWeather = document.getElementById('sceneWeather').value;
-        const sceneCharacters = document.getElementById('sceneCharacters').value;
         
         // Log the current state of selectedTags
         logDebug('Current selectedTags: ' + JSON.stringify(selectedTags));
@@ -2008,18 +1983,14 @@ function setupDeadlineListeners() {
             };
         }
         
-        // Create scene data object
-const sceneData = {
-    type: isHeadScene ? 'head' : 'tail',
-    title: sceneTitle,
-    synopsis: sceneSynopsis,
-    time: sceneTime,
-    weather: sceneWeather,
-    characters: sceneCharacters,
-    psychKeys: [...selectedTags], // Make a copy
-    deadline: sceneDeadline, // Add deadline to saved data
-    specificFields: specificFields
-};
+        // Create scene data object - REMOVED synopsis, time, weather, characters
+        const sceneData = {
+            type: isHeadScene ? 'head' : 'tail',
+            title: sceneTitle,
+            psychKeys: [...selectedTags], // Make a copy
+            deadline: sceneDeadline, // Add deadline to saved data
+            specificFields: specificFields
+        };
         
         // Log the full scene data for debugging
         logDebug('Complete scene data object: type=' + sceneData.type + 
@@ -2051,22 +2022,18 @@ const sceneData = {
                 if (el) el.value = value || '';
             };
             
-            // Set common fields
+            // Set common fields - REMOVED synopsis, time, weather, characters
             safeSetValue('sceneTitle', sceneData.title);
-            safeSetValue('sceneSynopsis', sceneData.synopsis);
-            safeSetValue('sceneTime', sceneData.time);
-            safeSetValue('sceneWeather', sceneData.weather);
-            safeSetValue('sceneCharacters', sceneData.characters);
           
-          // Load deadline
-if (sceneData.deadline) {
-    sceneDeadline = sceneData.deadline;
-    const deadlineInput = document.getElementById('sceneDeadline');
-    if (deadlineInput) {
-        deadlineInput.value = sceneDeadline;
-        updateDeadlineStatus();
-    }
-}
+            // Load deadline
+            if (sceneData.deadline) {
+                sceneDeadline = sceneData.deadline;
+                const deadlineInput = document.getElementById('sceneDeadline');
+                if (deadlineInput) {
+                    deadlineInput.value = sceneDeadline;
+                    updateDeadlineStatus();
+                }
+            }
             
             // Handle psychKeys properly - this is the fixed section
             if (sceneData.psychKeys && Array.isArray(sceneData.psychKeys)) {
@@ -2214,14 +2181,14 @@ if (sceneData.deadline) {
                             intentionSuccess = userData.intentionSuccess;
                         }
                       
-                      // Load scene deadline
-if (userData.sceneDeadline) {
-    sceneDeadline = userData.sceneDeadline;
-    logDebug('Loaded scene deadline: ' + sceneDeadline);
-} else {
-    sceneDeadline = null;
-    logDebug('No scene deadline found');
-}
+                        // Load scene deadline
+                        if (userData.sceneDeadline) {
+                            sceneDeadline = userData.sceneDeadline;
+                            logDebug('Loaded scene deadline: ' + sceneDeadline);
+                        } else {
+                            sceneDeadline = null;
+                            logDebug('No scene deadline found');
+                        }
                         
                         // Process calendar data
                         if (userData.calendarData) {
@@ -2300,15 +2267,15 @@ if (userData.sceneDeadline) {
         const userRef = firebase.database().ref(`users/${userId}`);
         
         // Data to save
-const dataToSave = {
-    tasks: cleanTasks,
-    dailyIntention: dailyIntention,
-    intentionSuccess: intentionSuccess,
-    sceneDeadline: sceneDeadline, // Add deadline to saved data
-    lastActiveDate: lastActiveDate,
-    calendarData: calendarData,
-    lastUpdated: new Date().toISOString()
-};
+        const dataToSave = {
+            tasks: cleanTasks,
+            dailyIntention: dailyIntention,
+            intentionSuccess: intentionSuccess,
+            sceneDeadline: sceneDeadline, // Add deadline to saved data
+            lastActiveDate: lastActiveDate,
+            calendarData: calendarData,
+            lastUpdated: new Date().toISOString()
+        };
         
         try {
             // CHECKING DAILY INTENTION BEFORE SAVE
