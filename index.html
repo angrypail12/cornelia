@@ -12,6 +12,7 @@
             --creative-color: #b388d1;
             --physical-color: #80c18d;
             --professional-color: #e0975b;
+            --story-color: #ff6b6b;
             --bg-color: #f8f9fa;
             --card-color: #ffffff;
             --text-color: #2d3748;
@@ -30,7 +31,7 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             padding: 20px;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
@@ -64,6 +65,30 @@
         .firebase-status {
             font-size: 0.8em;
             color: #4ade80;
+        }
+
+        /* Layout containers */
+        .top-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .bottom-section {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 1200px) {
+            .top-section {
+                grid-template-columns: 1fr;
+            }
+            .bottom-section {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* Enhanced Jedi Header */
@@ -140,17 +165,6 @@
             animation: titleShimmer 8s ease-in-out infinite;
         }
 
-        .jedi-date {
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.8);
-            margin-left: 20px;
-            opacity: 0;
-            animation: typingEffect 1.5s forwards;
-            position: relative;
-            z-index: 2;
-            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        }
-
         .lightsaber-bar {
             height: 35px;
             width: 100%;
@@ -199,47 +213,20 @@
 
         /* Animations */
         @keyframes titleShimmer {
-            0% {
-                background-position: 0% center;
-            }
-            50% {
-                background-position: 100% center;
-            }
-            100% {
-                background-position: 0% center;
-            }
-        }
-
-        @keyframes typingEffect {
-            0% {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            0% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+            100% { background-position: 0% center; }
         }
 
         @keyframes fadeIn {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
 
         @keyframes lightsaberHum {
-            0% {
-                box-shadow: 0 0 5px var(--mental-color), 0 0 10px var(--mental-color);
-            }
-            50% {
-                box-shadow: 0 0 8px var(--mental-color), 0 0 15px var(--mental-color);
-            }
-            100% {
-                box-shadow: 0 0 5px var(--mental-color), 0 0 10px var(--mental-color);
-            }
+            0% { box-shadow: 0 0 5px var(--mental-color), 0 0 10px var(--mental-color); }
+            50% { box-shadow: 0 0 8px var(--mental-color), 0 0 15px var(--mental-color); }
+            100% { box-shadow: 0 0 5px var(--mental-color), 0 0 10px var(--mental-color); }
         }
 
         .title {
@@ -264,337 +251,327 @@
             margin-bottom: 20px;
         }
       
-      /* Tag-based input styling */
-.tag-select-container {
-    position: relative;
-}
+        /* Tag-based input styling */
+        .tag-select-container {
+            position: relative;
+        }
 
-.tag-input-wrapper {
-    padding: 8px;
-    min-height: 45px;
-    border-radius: 8px;
-    border: 1px solid rgba(91, 119, 164, 0.3);
-    background-color: white;
-    color: #4a5568;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 6px;
-    cursor: text;
-}
+        .tag-input-wrapper {
+            padding: 8px;
+            min-height: 45px;
+            border-radius: 8px;
+            border: 1px solid rgba(91, 119, 164, 0.3);
+            background-color: white;
+            color: #4a5568;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px;
+            cursor: text;
+        }
 
-.tag-input {
-    flex: 1;
-    border: none;
-    outline: none;
-    padding: 4px;
-    font-size: 1rem;
-    min-width: 100px;
-}
+        .tag-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 4px;
+            font-size: 1rem;
+            min-width: 100px;
+        }
 
-.selected-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-}
+        .selected-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
 
-.tag {
-    background-color: rgba(91, 119, 164, 0.2);
-    padding: 3px 8px;
-    border-radius: 4px;
-    font-size: 0.85rem;
-    display: flex;
-    align-items: center;
-}
+        .tag {
+            background-color: rgba(91, 119, 164, 0.2);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+        }
 
-.remove-tag {
-    margin-left: 4px;
-    cursor: pointer;
-    font-weight: bold;
-}
+        .remove-tag {
+            margin-left: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
 
-.tag-dropdown {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background-color: white;
-    border: 1px solid rgba(91, 119, 164, 0.3);
-    border-radius: 0 0 8px 8px;
-    z-index: 10;
-    max-height: 200px;
-    overflow-y: auto;
-}
+        .tag-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: white;
+            border: 1px solid rgba(91, 119, 164, 0.3);
+            border-radius: 0 0 8px 8px;
+            z-index: 10;
+            max-height: 200px;
+            overflow-y: auto;
+        }
 
-.tag-dropdown.show {
-    display: block;
-}
+        .tag-dropdown.show {
+            display: block;
+        }
 
-.tag-option {
-    padding: 10px 12px;
-    cursor: pointer;
-    transition: background 0.2s;
-}
+        .tag-option {
+            padding: 10px 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
 
-.tag-option:hover {
-    background-color: rgba(91, 119, 164, 0.1);
-}
+        .tag-option:hover {
+            background-color: rgba(91, 119, 164, 0.1);
+        }
 
-.tag-option.selected {
-    background-color: rgba(91, 119, 164, 0.2);
-    font-weight: 500;
-}
+        .tag-option.selected {
+            background-color: rgba(91, 119, 164, 0.2);
+            font-weight: 500;
+        }
       
-      /* Scene styling */
-.scene-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
+        /* Scene styling */
+        .scene-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
 
-.scene-switch-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
+        .scene-switch-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-.scene-label {
-    color: white;
-    font-weight: 600;
-}
+        .scene-label {
+            color: white;
+            font-weight: 600;
+        }
 
-/* Toggle switch styling */
-.scene-switch {
-    position: relative;
-    display: inline-block;
-    width: 50px;
-    height: 24px;
-}
+        /* Toggle switch styling */
+        .scene-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
 
-.scene-switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
+        .scene-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
 
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #3b82f6;
-    transition: .4s;
-}
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #3b82f6;
+            transition: .4s;
+        }
 
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 18px;
-    width: 18px;
-    left: 3px;
-    bottom: 3px;
-    background-color: white;
-    transition: .4s;
-}
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+        }
 
-input:checked + .slider {
-    background-color: #9333ea;
-}
+        input:checked + .slider {
+            background-color: #9333ea;
+        }
 
-input:focus + .slider {
-    box-shadow: 0 0 1px #9333ea;
-}
+        input:focus + .slider {
+            box-shadow: 0 0 1px #9333ea;
+        }
 
-input:checked + .slider:before {
-    transform: translateX(26px);
-}
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
 
-/* Rounded sliders */
-.slider.round {
-    border-radius: 34px;
-}
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
 
-.slider.round:before {
-    border-radius: 50%;
-}
+        .slider.round:before {
+            border-radius: 50%;
+        }
 
-/* Field styling */
-.field-row {
-    margin-bottom: 15px;
-}
+        /* Field styling */
+        .field-row {
+            margin-bottom: 15px;
+        }
 
-.multi-field {
-    display: flex;
-    gap: 15px;
-}
+        .field-container {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
 
-.field-container {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
+        .field-container label {
+            color: white;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
 
-.field-container label {
-    color: white;
-    margin-bottom: 5px;
-    font-weight: 500;
-}
+        .scene-input, .scene-textarea, .scene-select {
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(91, 119, 164, 0.3);
+            background-color: white;
+            color: #4a5568;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
 
-.scene-input, .scene-textarea, .scene-select {
-    padding: 12px;
-    border-radius: 8px;
-    border: 1px solid rgba(91, 119, 164, 0.3);
-    background-color: white;
-    color: #4a5568;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-}
+        .scene-input:focus, .scene-textarea:focus, .scene-select:focus {
+            outline: none;
+            border-color: #5b77a4;
+            box-shadow: 0 0 0 3px rgba(91, 119, 164, 0.2);
+        }
 
-.scene-input:focus, .scene-textarea:focus, .scene-select:focus {
-    outline: none;
-    border-color: #5b77a4;
-    box-shadow: 0 0 0 3px rgba(91, 119, 164, 0.2);
-}
+        .scene-textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
 
-.scene-textarea {
-    min-height: 80px;
-    resize: vertical;
-}
-
-.scene-select {
-    cursor: pointer;
-}
-
-.common-fields {
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
+        .common-fields {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
       
-      /* Deadline styling */
-.deadline-container {
-    margin-bottom: 20px;
-    padding: 15px;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    background: rgba(255, 255, 255, 0.1);
-}
+        /* Deadline styling */
+        .deadline-container {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+        }
 
-.deadline-row {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-    margin-bottom: 10px;
-}
+        .deadline-row {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
 
-.deadline-field {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
+        .deadline-field {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
 
-.deadline-field label {
-    color: white;
-    margin-bottom: 5px;
-    font-weight: 500;
-    font-size: 0.9rem;
-}
+        .deadline-field label {
+            color: white;
+            margin-bottom: 5px;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
 
-.deadline-input {
-    padding: 8px 12px;
-    border-radius: 6px;
-    border: 1px solid rgba(91, 119, 164, 0.3);
-    background-color: white;
-    color: #4a5568;
-    font-size: 0.9rem;
-}
+        .deadline-input {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid rgba(91, 119, 164, 0.3);
+            background-color: white;
+            color: #4a5568;
+            font-size: 0.9rem;
+        }
 
-.deadline-status {
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-weight: 600;
-    font-size: 0.85rem;
-    text-align: center;
-    min-width: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-}
+        .deadline-status {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-align: center;
+            min-width: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
 
-.deadline-status.upcoming {
-    background-color: #dbeafe;
-    color: #1e40af;
-    border: 2px solid #3b82f6;
-}
+        .deadline-status.upcoming {
+            background-color: #dbeafe;
+            color: #1e40af;
+            border: 2px solid #3b82f6;
+        }
 
-.deadline-status.soon {
-    background-color: #fef3c7;
-    color: #92400e;
-    border: 2px solid #f59e0b;
-    animation: pulse-warning 2s infinite;
-}
+        .deadline-status.soon {
+            background-color: #fef3c7;
+            color: #92400e;
+            border: 2px solid #f59e0b;
+            animation: pulse-warning 2s infinite;
+        }
 
-.deadline-status.urgent {
-    background-color: #fee2e2;
-    color: #991b1b;
-    border: 2px solid #ef4444;
-    animation: pulse-urgent 1s infinite;
-}
+        .deadline-status.urgent {
+            background-color: #fee2e2;
+            color: #991b1b;
+            border: 2px solid #ef4444;
+            animation: pulse-urgent 1s infinite;
+        }
 
-.deadline-status.late {
-    background-color: #7f1d1d;
-    color: white;
-    border: 2px solid #dc2626;
-    animation: pulse-late 1.5s infinite;
-}
+        .deadline-status.late {
+            background-color: #7f1d1d;
+            color: white;
+            border: 2px solid #dc2626;
+            animation: pulse-late 1.5s infinite;
+        }
 
-@keyframes pulse-warning {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4); }
-    50% { box-shadow: 0 0 0 8px rgba(245, 158, 11, 0.1); }
-}
+        @keyframes pulse-warning {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4); }
+            50% { box-shadow: 0 0 0 8px rgba(245, 158, 11, 0.1); }
+        }
 
-@keyframes pulse-urgent {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
-    50% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0.1); }
-}
+        @keyframes pulse-urgent {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+            50% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0.1); }
+        }
 
-@keyframes pulse-late {
-    0%, 100% { 
-        box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.6);
-        transform: scale(1);
-    }
-    50% { 
-        box-shadow: 0 0 0 10px rgba(220, 38, 38, 0.1);
-        transform: scale(1.02);
-    }
-}
+        @keyframes pulse-late {
+            0%, 100% { 
+                box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.6);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 0 10px rgba(220, 38, 38, 0.1);
+                transform: scale(1.02);
+            }
+        }
 
-.deadline-icon {
-    font-size: 1rem;
-}
+        .deadline-icon {
+            font-size: 1rem;
+        }
 
-/* Replace intention card styles with scene card styles */
-.intention-card {
-    border-left: 4px solid #4f46e5;
-    background: linear-gradient(to right, #4338ca, #3b82f6);
-}
+        .intention-card {
+            border-left: 4px solid #5b77a4;
+            background: rgba(88,125,167,255);
+            margin-bottom: 20px;
+        }
+      
+        .intention-card .section-title {
+            color: white;
+            font-weight: 600;
+        }
 
         .section-title {
             color: var(--light-text);
             margin-bottom: 20px;
             font-size: 1.5rem;
             font-weight: bold;
-        }
-
-        .instruction-text {
-            color: var(--light-text);
-            margin-bottom: 20px;
-            font-style: italic;
         }
 
         .task-table {
@@ -749,7 +726,6 @@ input:checked + .slider:before {
             background-color: #475569;
         }
 
-        /* Next up badge styling */
         .next-up-badge {
             background-color: #2563eb;
             color: white;
@@ -844,136 +820,6 @@ input:checked + .slider:before {
             100% { transform: rotate(360deg); }
         }
 
-        /* Debug section */
-        .debug-section {
-            margin-top: 30px;
-            padding: 15px;
-            background-color: #f8f9fa;
-            border-radius: 8px;
-            border: 1px solid #e2e8f0;
-        }
-
-        .debug-log {
-            font-family: monospace;
-            font-size: 0.9rem;
-            white-space: pre-wrap;
-            margin-top: 10px;
-            padding: 10px;
-            background-color: #1a202c;
-            color: #e2e8f0;
-            border-radius: 4px;
-            max-height: 200px;
-            overflow-y: auto;
-        }
-
-        /* Media Queries */
-        @media (max-width: 768px) {
-            .task-table th:nth-child(3), 
-            .task-table td:nth-child(3) {
-                display: none;
-            }
-
-            .title {
-                font-size: 1.8rem;
-            }
-
-            .section-title {
-                font-size: 1.3rem;
-            }
-        }
-      
-        /* Daily Intention styles */
-        .intention-card {
-            border-left: 4px solid #5b77a4;
-            background: rgba(88,125,167,255);
-            margin-bottom: 20px;
-        }
-      
-        /* Daily Intention heading font color - deeper blue */
-        .intention-card .section-title {
-            color: white;
-            font-weight: 600;
-        }
-
-        .intention-container {
-            padding: 10px 0;
-        }
-
-        .intention-header {
-            margin-bottom: 15px;
-        }
-
-        .intention-title-input {
-            width: 100%;
-            background-color: white;
-            border: 1px solid rgba(91, 119, 164, 0.4);
-            border-radius: 8px;
-            padding: 15px;
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: black;
-            transition: all 0.3s ease;
-            white-space: normal;
-            word-wrap: break-word;
-            height: auto;
-            min-height: 60px;
-            line-height: 1.3;
-        }
-      
-        /* Add placeholder support for contenteditable */
-        .intention-title-input[contenteditable="true"]:empty:before {
-            content: attr(placeholder);
-            color: #8096b8;
-            font-weight: normal;
-        }
-
-        .intention-title-input:focus {
-            outline: none;
-            border-color: #5b77a4;
-            box-shadow: 0 0 0 3px rgba(91, 119, 164, 0.2);
-        }
-
-        .intention-title-input::placeholder {
-            color: white;
-            font-weight: normal;
-        }
-
-        .intention-success-textarea {
-            width: 100%;
-            min-height: 100px;
-            background-color: white;
-            border: 1px solid rgba(91, 119, 164, 0.3);
-            border-radius: 8px;
-            padding: 15px;
-            font-size: 1.1rem;
-            color: #4a5568;
-            resize: vertical;
-            transition: all 0.3s ease;
-        }
-
-        .intention-success-textarea:focus {
-            outline: none;
-            border-color: #5b77a4;
-            box-shadow: 0 0 0 3px rgba(91, 119, 164, 0.1);
-        }
-
-        .intention-success-textarea::placeholder {
-            color: white;
-        }
-
-        .intention-actions {
-            display: flex;
-            justify-content: flex-end;
-            margin-top: 10px;
-        }
-
-        /* Task completion animation */
-        @keyframes taskCompleteAnimation {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.5); opacity: 1; }
-            100% { transform: scale(1); opacity: 0.6; }
-        }
-
         .task-complete-overlay {
             position: fixed;
             top: 0;
@@ -1035,7 +881,6 @@ input:checked + .slider:before {
             margin-bottom: 20px;
         }
       
-      /* Add this to your CSS styles */
         .weekend-note {
             text-align: center;
             color: var(--light-text);
@@ -1143,1982 +988,2407 @@ input:checked + .slider:before {
             color: gold;
             font-size: 2.3rem;
             filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.5));
-            transform: rotate(5deg); /* Optional: adds a small tilt for visual interest */
+            transform: rotate(5deg);
         }
         
-        /* Percentage-based colors */
         .completion-0 {
             background-color: #f8f9fa;
         }
         
         .completion-25 {
-            background-color: #fee2e2;
-        }
-        
-        .completion-50 {
-            background-color: #fef3c7;
-        }
-        
-        .completion-75 {
-            background-color: #d1fae5;
-        }
-        
-        .completion-100 {
-            background-color: #dcfce7;
-        }
-    </style>
+           background-color: #fee2e2;
+       }
+       
+       .completion-50 {
+           background-color: #fef3c7;
+       }
+       
+       .completion-75 {
+           background-color: #d1fae5;
+       }
+       
+       .completion-100 {
+           background-color: #dcfce7;
+       }
+
+       /* Story Notes Styles */
+       .story-notes-card {
+           border-left: 4px solid var(--story-color);
+           background: linear-gradient(to right, #ff6b6b, #ee5a52);
+       }
+
+       .story-notes-card .section-title {
+           color: white;
+           font-weight: 600;
+       }
+
+       .story-notes-list {
+           margin-bottom: 20px;
+       }
+
+       .story-note-item {
+           display: flex;
+           align-items: flex-start;
+           gap: 10px;
+           padding: 12px;
+           margin-bottom: 8px;
+           background-color: rgba(255, 255, 255, 0.9);
+           border-radius: 8px;
+           border: 1px solid rgba(255, 107, 107, 0.3);
+           transition: all 0.3s ease;
+       }
+
+       .story-note-item:hover {
+           background-color: rgba(255, 255, 255, 1);
+           box-shadow: 0 2px 8px rgba(255, 107, 107, 0.2);
+       }
+
+       .story-note-item.completed {
+           opacity: 0.7;
+       }
+
+       .story-note-checkbox {
+           width: 18px;
+           height: 18px;
+           margin-top: 2px;
+           cursor: pointer;
+       }
+
+       .story-note-text {
+           flex: 1;
+           color: #2d3748;
+           line-height: 1.4;
+           word-wrap: break-word;
+       }
+
+       .story-note-text[contenteditable="true"] {
+           border: none;
+           outline: none;
+           background: transparent;
+       }
+
+       .story-note-text[contenteditable="true"]:focus {
+           background-color: rgba(255, 255, 255, 0.8);
+           border-radius: 4px;
+           padding: 4px;
+       }
+
+       .story-note-delete {
+           background: none;
+           border: none;
+           color: #94a3b8;
+           cursor: pointer;
+           font-size: 1rem;
+           transition: color 0.3s ease;
+           padding: 4px;
+       }
+
+       .story-note-delete:hover {
+           color: #ef4444;
+       }
+
+       .story-note-form {
+           display: flex;
+           gap: 10px;
+           margin-bottom: 20px;
+       }
+
+       .story-note-input {
+           flex: 1;
+           padding: 12px;
+           border: 1px solid rgba(255, 255, 255, 0.3);
+           border-radius: 8px;
+           background-color: rgba(255, 255, 255, 0.9);
+           color: #2d3748;
+           font-size: 1rem;
+       }
+
+       .story-note-input:focus {
+           outline: none;
+           border-color: rgba(255, 255, 255, 0.6);
+           box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+       }
+
+       .story-note-input::placeholder {
+           color: #64748b;
+       }
+
+       .add-story-note-btn {
+           background-color: rgba(255, 255, 255, 0.9);
+           color: #ff6b6b;
+           border: 1px solid rgba(255, 255, 255, 0.3);
+           padding: 12px 20px;
+           border-radius: 8px;
+           font-weight: 600;
+           cursor: pointer;
+           transition: all 0.3s ease;
+       }
+
+       .add-story-note-btn:hover {
+           background-color: white;
+           box-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
+       }
+
+       /* Archived notes accordion */
+       .archived-notes-container {
+           margin-top: 20px;
+       }
+
+       .archived-notes-header {
+           background-color: rgba(255, 255, 255, 0.1);
+           padding: 12px 16px;
+           border-radius: 8px;
+           cursor: pointer;
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+           transition: background-color 0.3s ease;
+       }
+
+       .archived-notes-header:hover {
+           background-color: rgba(255, 255, 255, 0.15);
+       }
+
+       .archived-notes-title {
+           color: white;
+           font-weight: 600;
+           font-size: 1rem;
+       }
+
+       .archived-notes-count {
+           background-color: rgba(255, 255, 255, 0.2);
+           color: white;
+           padding: 4px 8px;
+           border-radius: 12px;
+           font-size: 0.8rem;
+           font-weight: 600;
+       }
+
+       .archived-notes-icon {
+           color: white;
+           transition: transform 0.3s ease;
+       }
+
+       .archived-notes-content {
+           max-height: 0;
+           overflow: hidden;
+           transition: max-height 0.3s ease;
+           padding: 0 16px;
+       }
+
+       .archived-notes-content.expanded {
+           max-height: 500px;
+           padding: 16px;
+       }
+
+       .archived-note-item {
+           padding: 8px 12px;
+           margin-bottom: 6px;
+           background-color: rgba(255, 255, 255, 0.05);
+           border-radius: 6px;
+           color: rgba(255, 255, 255, 0.8);
+           font-size: 0.9rem;
+           line-height: 1.4;
+       }
+
+       .intention-actions {
+           display: flex;
+           justify-content: flex-end;
+           margin-top: 10px;
+       }
+
+       /* Debug section */
+       .debug-section {
+           margin-top: 30px;
+           padding: 15px;
+           background-color: #f8f9fa;
+           border-radius: 8px;
+           border: 1px solid #e2e8f0;
+       }
+
+       .debug-log {
+           font-family: monospace;
+           font-size: 0.9rem;
+           white-space: pre-wrap;
+           margin-top: 10px;
+           padding: 10px;
+           background-color: #1a202c;
+           color: #e2e8f0;
+           border-radius: 4px;
+           max-height: 200px;
+           overflow-y: auto;
+       }
+
+       @media (max-width: 768px) {
+           .task-table th:nth-child(3), 
+           .task-table td:nth-child(3) {
+               display: none;
+           }
+
+           .title {
+               font-size: 1.8rem;
+           }
+
+           .section-title {
+               font-size: 1.3rem;
+           }
+
+           .story-note-form {
+               flex-direction: column;
+           }
+
+           .add-story-note-btn {
+               align-self: stretch;
+           }
+       }
+   </style>
 </head>
 <body>
-    <div class="header">
-        <div class="user-info">
-            <div class="user-avatar" id="userInitial">J</div>
-            <div>
-                <div id="displayName">joebrasst</div>
-                <div class="firebase-status" id="firebaseStatus">Firebase Sync: ON</div>
-            </div>
-        </div>
-        <div id="loggedInControls">
-            <button id="logoutBtn" class="btn btn-secondary">Logout</button>
-        </div>
-    </div>
+   <div class="header">
+       <div class="user-info">
+           <div class="user-avatar" id="userInitial">J</div>
+           <div>
+               <div id="displayName">joebrasst</div>
+               <div class="firebase-status" id="firebaseStatus">Firebase Sync: ON</div>
+           </div>
+       </div>
+       <div id="loggedInControls">
+           <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+       </div>
+   </div>
 
-    <!-- Loading indicator -->
-    <div id="loadingIndicator" class="loading">
-        <div class="spinner"></div>
-        <p>Loading your data...</p>
-    </div>
+   <!-- Loading indicator -->
+   <div id="loadingIndicator" class="loading">
+       <div class="spinner"></div>
+       <p>Loading your data...</p>
+   </div>
 
-    <!-- Authentication Section -->
-    <div id="authContainer" class="card">
-        <h2 class="section-title auth-title">Jedi Skills Growth Tracker</h2>
-        
-        <div id="loginForm" class="auth-form">
-            <input type="email" id="emailInput" class="auth-input" placeholder="Email">
-            <input type="password" id="passwordInput" class="auth-input" placeholder="Password">
-            <div class="auth-btn-group">
-                <button id="loginBtn" class="btn btn-primary">Login</button>
-                <button id="registerBtn" class="btn btn-secondary">Register</button>
-            </div>
-            <div id="authError" class="auth-error"></div>
-            <div class="auth-message">Login or register to track your Jedi skills growth</div>
-        </div>
-    </div>
+   <!-- Authentication Section -->
+   <div id="authContainer" class="card">
+       <h2 class="section-title auth-title">Jedi Skills Growth Tracker</h2>
+       
+       <div id="loginForm" class="auth-form">
+           <input type="email" id="emailInput" class="auth-input" placeholder="Email">
+           <input type="password" id="passwordInput" class="auth-input" placeholder="Password">
+           <div class="auth-btn-group">
+               <button id="loginBtn" class="btn btn-primary">Login</button>
+               <button id="registerBtn" class="btn btn-secondary">Register</button>
+           </div>
+           <div id="authError" class="auth-error"></div>
+           <div class="auth-message">Login or register to track your Jedi skills growth</div>
+       </div>
+   </div>
 
-    <!-- Main App Content (Hidden until logged in) -->
-    <div id="appContent" style="display: none;">
-        <div class="card intention-card">
-    <div class="scene-header">
-        <h2 class="section-title">Daily Scene</h2>
-        <div class="scene-switch-container">
-            <span class="scene-label">Head</span>
-            <label class="scene-switch">
-                <input type="checkbox" id="sceneTypeSwitch">
-                <span class="slider round"></span>
-            </label>
-            <span class="scene-label">Tail</span>
-        </div>
-    </div>
-          
-          <!-- ADD THE DEADLINE CONTAINER HERE -->
-    <div class="deadline-container">
-        <div class="deadline-row">
-            <div class="deadline-field">
-                <label for="sceneDeadline">Scene Deadline</label>
-                <input type="date" id="sceneDeadline" class="deadline-input">
-            </div>
-            <div class="deadline-status upcoming" id="deadlineStatus">
-                <i class="fas fa-calendar-alt deadline-icon"></i>
-                <span id="deadlineText">No deadline set</span>
-            </div>
-        </div>
-    </div>
-    
-    <div class="common-fields">
-        <div class="field-row">
-            <div class="field-container">
-                <label for="sceneTitle">Title</label>
-                <input type="text" id="sceneTitle" class="scene-input" placeholder="Scene title...">
-            </div>
-        </div>
-        <div class="field-row">
-            <div class="field-container">
-                <label for="sceneSynopsis">Synopsis</label>
-                <textarea id="sceneSynopsis" class="scene-textarea" placeholder="Brief summary of the scene..."></textarea>
-            </div>
-        </div>
-        <div class="field-row multi-field">
-            <div class="field-container">
-                <label for="sceneTime">Time</label>
-                <input type="text" id="sceneTime" class="scene-input" placeholder="When...">
-            </div>
-            <div class="field-container">
-                <label for="sceneWeather">Weather</label>
-                <input type="text" id="sceneWeather" class="scene-input" placeholder="Conditions...">
-            </div>
-        </div>
-        <div class="field-row">
-            <div class="field-container">
-                <label for="sceneCharacters">Characters</label>
-                <input type="text" id="sceneCharacters" class="scene-input" placeholder="Who's in the scene...">
-            </div>
-        </div>
-        <div class="field-row">
-    <div class="field-container">
-        <label for="scenePsychKeys">Story Psych Keys</label>
-        <div class="tag-select-container">
-            <div class="tag-input-wrapper">
-                <div class="selected-tags" id="selectedTags"></div>
-                <input type="text" id="tagInput" class="tag-input" placeholder="Click to select keys...">
-            </div>
-            <div class="tag-dropdown" id="tagDropdown">
-                <div class="tag-option" data-value="Beauty">Beauty</div>
-                <div class="tag-option" data-value="Wealth">Wealth</div>
-                <div class="tag-option" data-value="Power">Power and Status</div>
-                <div class="tag-option" data-value="Competition">Competition</div>
-                <div class="tag-option" data-value="SafeDanger">Safe Danger</div>
-                <div class="tag-option" data-value="TouchWarmth">Touch and Warmth</div>
-            </div>
-        </div>
-    </div>
-</div>
-    </div>
-    
-    <!-- Head Scene Fields (visible by default) -->
-    <div id="headSceneFields" class="scene-type-fields">
-        <div class="field-row">
-            <div class="field-container">
-                <label for="sceneGoal">Goal (What do they want at start of scene)</label>
-                <textarea id="sceneGoal" class="scene-textarea" placeholder="Character's initial goal..."></textarea>
-            </div>
-        </div>
-        <div class="field-row">
-            <div class="field-container">
-                <label for="sceneConflict">Conflict (What stops that goal?)</label>
-                <textarea id="sceneConflict" class="scene-textarea" placeholder="Obstacles and challenges..."></textarea>
-            </div>
-        </div>
-        <div class="field-row">
-            <div class="field-container">
-                <label for="sceneDisaster">Disaster (How do they end up worse than before?)</label>
-                <textarea id="sceneDisaster" class="scene-textarea" placeholder="The setback or failure..."></textarea>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Tail Scene Fields (hidden initially) -->
-    <div id="tailSceneFields" class="scene-type-fields" style="display: none;">
-        <div class="field-row">
-            <div class="field-container">
-                <label for="sceneReaction">Reaction to Disaster (Emotional)</label>
-                <textarea id="sceneReaction" class="scene-textarea" placeholder="How they feel and respond..."></textarea>
-            </div>
-        </div>
-        <div class="field-row">
-            <div class="field-container">
-                <label for="sceneDilemma">Dilemma (Options, None Good)</label>
-                <textarea id="sceneDilemma" class="scene-textarea" placeholder="The difficult choices..."></textarea>
-            </div>
-        </div>
-        <div class="field-row">
-            <div class="field-container">
-                <label for="sceneDecision">Decision (Their New Goal)</label>
-                <textarea id="sceneDecision" class="scene-textarea" placeholder="What they decide to do next..."></textarea>
-            </div>
-        </div>
-    </div>
-    
-    <div class="intention-actions">
-        <button id="saveScene" class="btn btn-primary">Save Scene</button>
-    </div>
-</div>
+   <!-- Main App Content (Hidden until logged in) -->
+   <div id="appContent" style="display: none;">
+       <div id="headerContainer" class="header-container">
+           <h1 id="jediTitle" class="jedi-title">Today's Mission</h1>
+           <div class="jedi-emblem">
+               <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                   <path d="M50 10 L60 40 L90 40 L65 60 L75 90 L50 70 L25 90 L35 60 L10 40 L40 40 Z" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="2"/>
+                   <circle cx="50" cy="50" r="15" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="2"/>
+               </svg>
+           </div>
+           <div class="lightsaber-bar">
+               <div class="lightsaber-progress" id="dailyProgressBar">
+                   <div class="lightsaber-handle"></div>
+               </div>
+           </div>
+           <div class="progress-info">
+               <span id="progressSummary">Daily progress: 0%</span>
+               <span id="tasksSummary">0/0 tasks completed</span>
+           </div>
+       </div>
 
-        <h1 class="title">Daily Tasks</h1>
-        <div class="date" id="currentDate">Wednesday, April 2, 2025</div>
-        
-        <div id="headerContainer" class="header-container">
-            <h1 id="jediTitle" class="jedi-title">Today's Mission</h1>
-            <div class="jedi-emblem">
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M50 10 L60 40 L90 40 L65 60 L75 90 L50 70 L25 90 L35 60 L10 40 L40 40 Z" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="2"/>
-                    <circle cx="50" cy="50" r="15" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="2"/>
-                </svg>
-            </div>
-            <div class="lightsaber-bar">
-                <div class="lightsaber-progress" id="dailyProgressBar">
-                    <div class="lightsaber-handle"></div>
-                </div>
-            </div>
-            <div class="progress-info">
-                <span id="progressSummary">Daily progress: 0%</span>
-                <span id="tasksSummary">0/0 tasks completed</span>
-            </div>
-        </div>
+       <!-- Top Section: Daily Tasks and Calendar Side by Side -->
+       <div class="top-section">
+           <!-- Daily Tasks Section -->
+           <div class="card">
+               <h1 class="title">Daily Tasks</h1>
+               <div class="date" id="currentDate">Wednesday, April 2, 2025</div>
+               
+               <table class="task-table">
+                   <thead>
+                       <tr>
+                           <th>Task</th>
+                           <th class="checkbox-cell">Complete</th>
+                           <th class="category-cell">Category</th>
+                           <th class="action-cell">Actions</th>
+                       </tr>
+                   </thead>
+                   <tbody id="taskTableBody">
+                       <!-- Tasks will be populated here by JavaScript -->
+                   </tbody>
+               </table>
+               
+               <div class="add-task-form">
+                   <input type="text" id="newTaskInput" class="task-input" placeholder="Add a new task...">
+                   <select id="newTaskCategory" class="category-select">
+                       <option value="Physical Cultivation">Physical Cultivation</option>
+                       <option value="Mental Disciplines">Mental Disciplines</option>
+                       <option value="Professional Mastery">Professional Mastery</option>
+                       <option value="Creative Force">Creative Force</option>
+                   </select>
+                   <button id="addTaskBtn" class="btn btn-primary">Add Task</button>
+               </div>
+               
+               <div class="action-btns">
+                   <button id="resetTasksBtn" class="btn btn-secondary">Reset All Tasks</button>
+               </div>
+           </div>
 
-        <div class="card">
-          <table class="task-table">
-                <thead>
-                    <tr>
-                        <th>Task</th>
-                        <th class="checkbox-cell">Complete</th>
-                        <th class="category-cell">Category</th>
-                        <th class="action-cell">Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="taskTableBody">
-                    <!-- Tasks will be populated here by JavaScript -->
-                </tbody>
-            </table>
-            
-            <div class="add-task-form">
-                <input type="text" id="newTaskInput" class="task-input" placeholder="Add a new task...">
-                <select id="newTaskCategory" class="category-select">
-                    <option value="Physical Cultivation">Physical Cultivation</option>
-                    <option value="Mental Disciplines">Mental Disciplines</option>
-                    <option value="Professional Mastery">Professional Mastery</option>
-                    <option value="Creative Force">Creative Force</option>
-                </select>
-                <button id="addTaskBtn" class="btn btn-primary">Add Task</button>
-            </div>
-            
-            <div class="action-btns">
-                <button id="resetTasksBtn" class="btn btn-secondary">Reset All Tasks</button>
-            </div>
-        </div>
+           <!-- Calendar Section -->
+           <div class="card">
+               <h2 class="section-title">Task Completion Calendar</h2>
+               <div class="streak-summary">
+                   <div class="streak-box">
+                       <div class="streak-label">Current Streak:</div>
+                       <div class="streak-value" id="currentStreak">0 days</div>
+                   </div>
+                   <div class="streak-box">
+                       <div class="streak-label">Longest Streak:</div>
+                       <div class="streak-value" id="longestStreak">0 days</div>
+                   </div>
+               </div>
+               <p class="weekend-note">Note: Weekends (Saturday & Sunday) are not counted in streaks.</p>
+               <div class="calendar-container">
+                   <div class="calendar-header">
+                       <button id="prevMonth" class="btn btn-secondary"><i class="fas fa-chevron-left"></i></button>
+                       <h3 id="calendarMonthYear">May 2025</h3>
+                       <button id="nextMonth" class="btn btn-secondary"><i class="fas fa-chevron-right"></i></button>
+                   </div>
+                   <div class="weekdays">
+                       <div>Sun</div>
+                       <div>Mon</div>
+                       <div>Tue</div>
+                       <div>Wed</div>
+                       <div>Thu</div>
+                       <div>Fri</div>
+                       <div>Sat</div>
+                   </div>
+                   <div class="calendar-grid" id="calendarGrid">
+                       <!-- Calendar days will be populated here by JavaScript -->
+                   </div>
+               </div>
+           </div>
+       </div>
 
-        <!-- Calendar Section -->
-        <div class="card">
-            <h2 class="section-title">Task Completion Calendar</h2>
-            <div class="streak-summary">
-                <div class="streak-box">
-                    <div class="streak-label">Current Streak:</div>
-                    <div class="streak-value" id="currentStreak">0 days</div>
-                </div>
-                <div class="streak-box">
-                    <div class="streak-label">Longest Streak:</div>
-                    <div class="streak-value" id="longestStreak">0 days</div>
-                </div>
-            </div>
-            <p class="weekend-note">Note: Weekends (Saturday & Sunday) are not counted in streaks.</p>
-            <div class="calendar-container">
-                <div class="calendar-header">
-                    <button id="prevMonth" class="btn btn-secondary"><i class="fas fa-chevron-left"></i></button>
-                    <h3 id="calendarMonthYear">May 2025</h3>
-                    <button id="nextMonth" class="btn btn-secondary"><i class="fas fa-chevron-right"></i></button>
-                </div>
-                <div class="weekdays">
-                    <div>Sun</div>
-                    <div>Mon</div>
-                    <div>Tue</div>
-                    <div>Wed</div>
-                    <div>Thu</div>
-                    <div>Fri</div>
-                    <div>Sat</div>
-                </div>
-                <div class="calendar-grid" id="calendarGrid">
-                    <!-- Calendar days will be populated here by JavaScript -->
-                </div>
-            </div>
-        </div>
+       <!-- Bottom Section: Daily Scene and Story Notes Side by Side -->
+       <div class="bottom-section">
+           <!-- Daily Scene Section -->
+           <div class="card intention-card">
+               <div class="scene-header">
+                   <h2 class="section-title">Daily Scene</h2>
+                   <div class="scene-switch-container">
+                       <span class="scene-label">Head</span>
+                       <label class="scene-switch">
+                           <input type="checkbox" id="sceneTypeSwitch">
+                           <span class="slider round"></span>
+                       </label>
+                       <span class="scene-label">Tail</span>
+                   </div>
+               </div>
+               
+               <!-- Deadline Container -->
+               <div class="deadline-container">
+                   <div class="deadline-row">
+                       <div class="deadline-field">
+                           <label for="sceneDeadline">Scene Deadline</label>
+                           <input type="date" id="sceneDeadline" class="deadline-input">
+                       </div>
+                       <div class="deadline-status upcoming" id="deadlineStatus">
+                           <i class="fas fa-calendar-alt deadline-icon"></i>
+                           <span id="deadlineText">No deadline set</span>
+                       </div>
+                   </div>
+               </div>
+               
+               <div class="common-fields">
+                   <div class="field-row">
+                       <div class="field-container">
+                           <label for="sceneTitle">Scene/Chapter Title</label>
+                           <input type="text" id="sceneTitle" class="scene-input" placeholder="Scene title...">
+                       </div>
+                   </div>
+                   <div class="field-row">
+                       <div class="field-container">
+                           <label for="scenePsychKeys">Story Psych Keys</label>
+                           <div class="tag-select-container">
+                               <div class="tag-input-wrapper">
+                                   <div class="selected-tags" id="selectedTags"></div>
+                                   <input type="text" id="tagInput" class="tag-input" placeholder="Click to select keys...">
+                               </div>
+                               <div class="tag-dropdown" id="tagDropdown">
+                                   <div class="tag-option" data-value="Beauty">Beauty</div>
+                                   <div class="tag-option" data-value="Wealth">Wealth</div>
+                                   <div class="tag-option" data-value="Power">Power and Status</div>
+                                   <div class="tag-option" data-value="Competition">Competition</div>
+                                   <div class="tag-option" data-value="SafeDanger">Safe Danger</div>
+                                   <div class="tag-option" data-value="TouchWarmth">Touch and Warmth</div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+               
+               <!-- Head Scene Fields (visible by default) -->
+               <div id="headSceneFields" class="scene-type-fields">
+                   <div class="field-row">
+                       <div class="field-container">
+                           <label for="sceneGoal">Goal (What do they want at start of scene)</label>
+                           <textarea id="sceneGoal" class="scene-textarea" placeholder="Character's initial goal..."></textarea>
+                       </div>
+                   </div>
+                   <div class="field-row">
+                       <div class="field-container">
+                           <label for="sceneConflict">Conflict (What stops that goal?)</label>
+                           <textarea id="sceneConflict" class="scene-textarea" placeholder="Obstacles and challenges..."></textarea>
+                       </div>
+                   </div>
+                   <div class="field-row">
+                       <div class="field-container">
+                           <label for="sceneDisaster">Disaster (How do they end up worse than before?)</label>
+                           <textarea id="sceneDisaster" class="scene-textarea" placeholder="The setback or failure..."></textarea>
+                       </div>
+                   </div>
+               </div>
+               
+               <!-- Tail Scene Fields (hidden initially) -->
+               <div id="tailSceneFields" class="scene-type-fields" style="display: none;">
+                   <div class="field-row">
+                       <div class="field-container">
+                           <label for="sceneReaction">Reaction to Disaster (Emotional)</label>
+                           <textarea id="sceneReaction" class="scene-textarea" placeholder="How they feel and respond..."></textarea>
+                       </div>
+                   </div>
+                   <div class="field-row">
+                       <div class="field-container">
+                           <label for="sceneDilemma">Dilemma (Options, None Good)</label>
+                           <textarea id="sceneDilemma" class="scene-textarea" placeholder="The difficult choices..."></textarea>
+                       </div>
+                   </div>
+                   <div class="field-row">
+                       <div class="field-container">
+                           <label for="sceneDecision">Decision (Their New Goal)</label>
+                           <textarea id="sceneDecision" class="scene-textarea" placeholder="What they decide to do next..."></textarea>
+                       </div>
+                   </div>
+               </div>
+               
+               <div class="intention-actions">
+                   <button id="saveScene" class="btn btn-primary">Save Scene</button>
+               </div>
+           </div>
 
-        <!-- Task completion animation overlay -->
-        <div id="taskCompleteOverlay" class="task-complete-overlay">
-            <div id="taskCompleteMessage" class="task-complete-message">TASK COMPLETE!</div>
-        </div>
-        
-        <!-- Debug section - always at the bottom of the page -->
-        <div id="debugSection" class="debug-section" style="display: block;">
-            <h3>Firebase Debug Info</h3>
-            <div id="debugLog" class="debug-log"></div>
-        </div>
-    </div>
+           <!-- Story Notes Section -->
+           <div class="card story-notes-card">
+               <h2 class="section-title">Add To Story</h2>
+               
+               <div class="story-note-form">
+                   <input type="text" id="storyNoteInput" class="story-note-input" placeholder="Add a note to incorporate into your story...">
+                   <button id="addStoryNoteBtn" class="add-story-note-btn">Add Note</button>
+               </div>
 
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.20.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.20.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.20.0/firebase-database-compat.js"></script>
-    
-    <script>
-    // Firebase configuration
-    const firebaseConfig = {
-        apiKey: "AIzaSyCsP9DDFsCCjC-1EpA8uzeRhWUfFrQ8-Zo",
-        authDomain: "jedi-8ce49.firebaseapp.com",
-        databaseURL: "https://jedi-8ce49-default-rtdb.firebaseio.com/",
-        projectId: "jedi-8ce49",
-        storageBucket: "jedi-8ce49.firebasestorage.app",
-        messagingSenderId: "1001546846157",
-        appId: "1:1001546846157:web:328f6ef11b9e32fbe7be84"
-    };
-    
-    // Debug functions
-    function logDebug(message) {
-        const timestamp = new Date().toLocaleTimeString();
-        const debugLog = document.getElementById('debugLog');
-        if (debugLog) {
-            debugLog.innerHTML += `[${timestamp}] ${message}\n`;
-            debugLog.scrollTop = debugLog.scrollHeight;
-        }
-        console.log(`[${timestamp}] ${message}`);
-    }
-    
-    // Main App Variables
-    let userId = null;
-    let tasks = [];
-    let lastActiveDate = null;
-    let dailyIntention = "";
-    let intentionSuccess = "";
-    let selectedTags = []; // Global variable to track selected tags
-    let sceneDeadline = null; // Global variable to track scene deadline
+               <div class="story-notes-list" id="storyNotesList">
+                   <!-- Active story notes will be populated here -->
+               </div>
 
-    // Calendar Variables
-    let calendarData = {};
-    let currentDate = new Date();
-    let displayedMonth = currentDate.getMonth();
-    let displayedYear = currentDate.getFullYear();
-    
-    // Constants for the point system
-    const TASK_POINTS = 25; // Points for completing a task
-    
-    // DOM Elements
-    const loadingIndicator = document.getElementById('loadingIndicator');
-    const authContainer = document.getElementById('authContainer');
-    const appContent = document.getElementById('appContent');
-    const emailInput = document.getElementById('emailInput');
-    const passwordInput = document.getElementById('passwordInput');
-    const loginBtn = document.getElementById('loginBtn');
-    const registerBtn = document.getElementById('registerBtn');
-    const logoutBtn = document.getElementById('logoutBtn');
-    const authError = document.getElementById('authError');
-    const userInitial = document.getElementById('userInitial');
-    const displayName = document.getElementById('displayName');
-    const taskTableBody = document.getElementById('taskTableBody');
-    const currentDateEl = document.getElementById('currentDate');
-    const taskCompleteOverlay = document.getElementById('taskCompleteOverlay');
-    const taskCompleteMessage = document.getElementById('taskCompleteMessage');
+               <!-- Archived notes accordion -->
+               <div class="archived-notes-container">
+                   <div class="archived-notes-header" id="archivedNotesHeader">
+                       <div style="display: flex; align-items: center; gap: 10px;">
+                           <span class="archived-notes-title">Completed Notes</span>
+                           <span class="archived-notes-count" id="archivedNotesCount">0</span>
+                       </div>
+                       <i class="fas fa-chevron-down archived-notes-icon" id="archivedNotesIcon"></i>
+                   </div>
+                   <div class="archived-notes-content" id="archivedNotesContent">
+                       <!-- Archived notes will be populated here -->
+                   </div>
+               </div>
+           </div>
+       </div>
 
-    // Global function to add tags to the display
-    function addTagToDisplay(value, text) {
-        const selectedTagsContainer = document.getElementById('selectedTags');
-        if (!selectedTagsContainer) {
-            logDebug('addTagToDisplay failed: container not found');
-            return;
-        }
-        
-        const tagEl = document.createElement('div');
-        tagEl.className = 'tag';
-        tagEl.setAttribute('data-value', value);
-        tagEl.innerHTML = `${text} <span class="remove-tag">×</span>`;
-        
-        // Add remove functionality
-        tagEl.querySelector('.remove-tag').addEventListener('click', function(e) {
-            e.stopPropagation();
-            removeTagFromDisplay(value);
-            
-            // Update dropdown selection
-            const option = document.querySelector(`.tag-option[data-value="${value}"]`);
-            if (option) option.classList.remove('selected');
-            
-            // Update selected tags array
-            selectedTags = selectedTags.filter(tag => tag !== value);
-            logDebug('Removed tag: ' + value + ', remaining tags: ' + JSON.stringify(selectedTags));
-        });
-        
-        selectedTagsContainer.appendChild(tagEl);
-        logDebug('Added tag to display: ' + value);
-    }
+       <!-- Task completion animation overlay -->
+       <div id="taskCompleteOverlay" class="task-complete-overlay">
+           <div id="taskCompleteMessage" class="task-complete-message">TASK COMPLETE!</div>
+       </div>
+       
+       <!-- Debug section - always at the bottom of the page -->
+       <div id="debugSection" class="debug-section" style="display: block;">
+           <h3>Firebase Debug Info</h3>
+           <div id="debugLog" class="debug-log"></div>
+       </div>
+   </div>
 
-    // Global function to remove tags from display
-    function removeTagFromDisplay(value) {
-        const selectedTagsContainer = document.getElementById('selectedTags');
-        if (!selectedTagsContainer) {
-            logDebug('removeTagFromDisplay failed: container not found');
-            return;
-        }
-        
-        const tag = selectedTagsContainer.querySelector(`.tag[data-value="${value}"]`);
-        if (tag) {
-            tag.remove();
-            logDebug('Removed tag element: ' + value);
-        } else {
-            logDebug('Could not find tag element to remove: ' + value);
-        }
-    }
+   <!-- Firebase SDK -->
+   <script src="https://www.gstatic.com/firebasejs/9.20.0/firebase-app-compat.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/9.20.0/firebase-auth-compat.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/9.20.0/firebase-database-compat.js"></script>
+   
+   <script>
+   // Firebase configuration
+   const firebaseConfig = {
+       apiKey: "AIzaSyCsP9DDFsCCjC-1EpA8uzeRhWUfFrQ8-Zo",
+       authDomain: "jedi-8ce49.firebaseapp.com",
+       databaseURL: "https://jedi-8ce49-default-rtdb.firebaseio.com/",
+       projectId: "jedi-8ce49",
+       storageBucket: "jedi-8ce49.firebasestorage.app",
+       messagingSenderId: "1001546846157",
+       appId: "1:1001546846157:web:328f6ef11b9e32fbe7be84"
+   };
+   
+   // Debug functions
+   function logDebug(message) {
+       const timestamp = new Date().toLocaleTimeString();
+       const debugLog = document.getElementById('debugLog');
+       if (debugLog) {
+           debugLog.innerHTML += `[${timestamp}] ${message}\n`;
+           debugLog.scrollTop = debugLog.scrollHeight;
+       }
+       console.log(`[${timestamp}] ${message}`);
+   }
+   
+   // Main App Variables
+   let userId = null;
+   let tasks = [];
+   let storyNotes = []; // New variable for story notes
+   let lastActiveDate = null;
+   let dailyIntention = "";
+   let intentionSuccess = "";
+   let selectedTags = []; // Global variable to track selected tags
+   let sceneDeadline = null; // Global variable to track scene deadline
 
-    // Global function to clear all tags
-    function clearTags() {
-        const selectedTagsContainer = document.getElementById('selectedTags');
-        if (selectedTagsContainer) {
-            selectedTagsContainer.innerHTML = '';
-        }
-        
-        selectedTags = [];
-        
-        document.querySelectorAll('.tag-option.selected').forEach(option => {
-            option.classList.remove('selected');
-        });
-        
-        logDebug('All tags cleared');
-    }
-    
-      // ADD THE DEADLINE FUNCTIONS HERE
-// Deadline management functions
-function updateDeadlineStatus() {
-    const deadlineInput = document.getElementById('sceneDeadline');
-    const deadlineStatus = document.getElementById('deadlineStatus');
-    const deadlineText = document.getElementById('deadlineText');
-    
-    if (!deadlineInput || !deadlineStatus || !deadlineText) return;
-    
-    const deadlineValue = deadlineInput.value;
-    
-    if (!deadlineValue) {
-        deadlineStatus.className = 'deadline-status upcoming';
-        deadlineText.textContent = 'No deadline set';
-        return;
-    }
-    
-    // Create deadline date at 5pm
-    const deadlineDate = new Date(deadlineValue + 'T17:00:00');
-    const now = new Date();
-    const timeDiff = deadlineDate - now;
-    const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-    
-    // Remove all status classes
-    deadlineStatus.className = 'deadline-status';
-    
-    if (timeDiff < 0) {
-        // Past deadline
-        deadlineStatus.classList.add('late');
-        deadlineText.innerHTML = '<i class="fas fa-exclamation-triangle deadline-icon"></i> LATE!';
-    } else if (daysDiff <= 1) {
-        // Due today or tomorrow
-        deadlineStatus.classList.add('urgent');
-        if (daysDiff === 0) {
-            const hoursLeft = Math.ceil(timeDiff / (1000 * 60 * 60));
-            deadlineText.innerHTML = `<i class="fas fa-fire deadline-icon"></i> Due in ${hoursLeft}h`;
-        } else {
-            deadlineText.innerHTML = '<i class="fas fa-fire deadline-icon"></i> Due tomorrow';
-        }
-    } else if (daysDiff <= 3) {
-        // Due soon (2-3 days)
-        deadlineStatus.classList.add('soon');
-        deadlineText.innerHTML = `<i class="fas fa-clock deadline-icon"></i> ${daysDiff} days left`;
-    } else {
-        // Plenty of time
-        deadlineStatus.classList.add('upcoming');
-        deadlineText.innerHTML = `<i class="fas fa-calendar-check deadline-icon"></i> ${daysDiff} days left`;
-    }
-    
-    logDebug(`Deadline status updated: ${daysDiff} days left`);
-}
+   // Calendar Variables
+   let calendarData = {};
+   let currentDate = new Date();
+   let displayedMonth = currentDate.getMonth();
+   let displayedYear = currentDate.getFullYear();
+   
+   // Constants for the point system
+   const TASK_POINTS = 25; // Points for completing a task
+   
+   // DOM Elements
+   const loadingIndicator = document.getElementById('loadingIndicator');
+   const authContainer = document.getElementById('authContainer');
+   const appContent = document.getElementById('appContent');
+   const emailInput = document.getElementById('emailInput');
+   const passwordInput = document.getElementById('passwordInput');
+   const loginBtn = document.getElementById('loginBtn');
+   const registerBtn = document.getElementById('registerBtn');
+   const logoutBtn = document.getElementById('logoutBtn');
+   const authError = document.getElementById('authError');
+   const userInitial = document.getElementById('userInitial');
+   const displayName = document.getElementById('displayName');
+   const taskTableBody = document.getElementById('taskTableBody');
+   const currentDateEl = document.getElementById('currentDate');
+   const taskCompleteOverlay = document.getElementById('taskCompleteOverlay');
+   const taskCompleteMessage = document.getElementById('taskCompleteMessage');
 
-function setupDeadlineListeners() {
-    const deadlineInput = document.getElementById('sceneDeadline');
-    
-    if (deadlineInput) {
-        deadlineInput.addEventListener('change', function() {
-            sceneDeadline = this.value;
-            updateDeadlineStatus();
-            logDebug('Scene deadline changed: ' + sceneDeadline);
-        });
-        
-        // Update status immediately on load
-        updateDeadlineStatus();
-        
-        // Update status every minute to keep time-sensitive info current
-        setInterval(updateDeadlineStatus, 60000);
-    }
-}
-      
-    // Loading indicator functions
-    function showLoading() {
-        if (loadingIndicator) {
-            loadingIndicator.style.display = 'block';
-            logDebug("Loading indicator shown");
-        }
-    }
-    
-    function hideLoading() {
-        if (loadingIndicator) {
-            loadingIndicator.style.display = 'none';
-            logDebug("Loading indicator hidden");
-        }
-    }
-    
-    // Initialize Firebase
-    try {
-        logDebug("Initializing Firebase...");
-        firebase.initializeApp(firebaseConfig);
-        logDebug('Firebase initialized successfully');
-        document.getElementById('firebaseStatus').textContent = 'Firebase Sync: ON';
-    } catch (error) {
-        logDebug(`Firebase initialization error: ${error.message}`);
-        console.error('Firebase initialization error:', error);
-        document.getElementById('firebaseStatus').textContent = 'Firebase Sync: ERROR';
-        document.getElementById('firebaseStatus').style.color = '#ef4444';
-    }
-    
-    // Login function
-    function login() {
-        const email = emailInput.value.trim();
-        const password = passwordInput.value.trim();
-        
-        logDebug(`Attempting login with email: ${email}`);
-        
-        if (!email || !password) {
-            authError.textContent = "Please enter both email and password";
-            return;
-        }
-        
-        showLoading();
-        
-        try {
-            firebase.auth().signInWithEmailAndPassword(email, password)
-                .then((userCredential) => {
-                    emailInput.value = '';
-                    passwordInput.value = '';
-                    authError.textContent = '';
-                    logDebug(`User logged in: ${userCredential.user.uid}`);
-                })
-                .catch((error) => {
-                    authError.textContent = error.message;
-                    logDebug(`Login error: ${error.message}`);
-                    hideLoading();
-                });
-        } catch (error) {
-            logDebug(`Critical login error: ${error.message}`);
-            authError.textContent = "Login failed: " + error.message;
-            hideLoading();
-        }
-    }
-    
-    // Register function
-    function register() {
-        const email = emailInput.value.trim();
-        const password = passwordInput.value.trim();
-        
-        logDebug(`Attempting registration with email: ${email}`);
-        
-        if (!email || !password) {
-            authError.textContent = "Please enter both email and password";
-            return;
-        }
-        
-        if (password.length < 6) {
-            authError.textContent = "Password should be at least 6 characters";
-            return;
-        }
-        
-        showLoading();
-        
-        try {
-            firebase.auth().createUserWithEmailAndPassword(email, password)
-                .then((userCredential) => {
-                    emailInput.value = '';
-                    passwordInput.value = '';
-                    authError.textContent = '';
-                    logDebug(`User registered: ${userCredential.user.uid}`);
-                })
-                .catch((error) => {
-                    authError.textContent = error.message;
-                    logDebug(`Registration error: ${error.message}`);
-                    hideLoading();
-                });
-        } catch (error) {
-            logDebug(`Critical registration error: ${error.message}`);
-            authError.textContent = "Registration failed: " + error.message;
-            hideLoading();
-        }
-    }
-    
-    // Logout function
-    function logout() {
-        showLoading();
-        
-        logDebug("Attempting to log out...");
-        
-        try {
-            firebase.auth().signOut()
-                .then(() => {
-                    logDebug('User logged out successfully');
-                })
-                .catch((error) => {
-                    logDebug(`Logout error: ${error.message}`);
-                    hideLoading();
-                });
-        } catch (error) {
-            logDebug(`Critical logout error: ${error.message}`);
-            hideLoading();
-        }
-    }
-    
-    // Initialize default data for new users
-    function initializeDefaultData() {
-        logDebug('Initializing default data');
-        
-        tasks = [
-            {
-                id: 1,
-                name: "Morning Mix > Shower > Robe",
-                category: "Physical Cultivation",
-                completed: false
-            },
-            {
-                id: 2,
-                name: "Phone in jail",
-                category: "Mental Disciplines",
-                completed: false
-            },
-            {
-                id: 3,
-                name: "Check email and calendar for Rogue items",
-                category: "Physical Cultivation",
-                completed: false
-            },
-            {
-                id: 4,
-                name: "Practice: Reread last paragraph of novel",
-                category: "Creative Force",
-                completed: false
-            },
-            {
-                id: 5,
-                name: "Morning blah blah pages",
-                category: "Creative Force",
-                completed: false
-            }
-        ];
-        
-        // Set last active date to now
-        lastActiveDate = new Date().toISOString();
-        
-        // Initialize calendar data
-        calendarData = {};
-        
-        // Save initial data to Firebase
-        saveDataToFirebase();
-    }
-    
-    // Initialize the app with user data
-    function initializeApp(uid) {
-        userId = uid;
-        logDebug(`Initializing app for user: ${userId}`);
-        
-        // Set current date
-        const today = new Date();
-        if (currentDateEl) {
-            currentDateEl.textContent = today.toLocaleDateString('en-US', { 
-                weekday: 'long', 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-            });
-        }
-        
-        // Load user data from Firebase
-        loadDataFromFirebase();
-        
-        // Add event listeners for app functionality
-        const addTaskBtn = document.getElementById('addTaskBtn');
-        const newTaskInput = document.getElementById('newTaskInput');
-        const newTaskCategory = document.getElementById('newTaskCategory');
-        const resetTasksBtn = document.getElementById('resetTasksBtn');
-        
-        if (addTaskBtn) {
-            addTaskBtn.addEventListener('click', addTask);
-            logDebug("Added event listener for addTaskBtn");
-        }
-        
-        if (resetTasksBtn) {
-            resetTasksBtn.addEventListener('click', resetTasks);
-            logDebug("Added event listener for resetTasksBtn");
-        }
-        
-        // Setup intention listeners
-        setupIntentionListeners();
-        
-        // Add event listener to task input for Enter key
-        if (newTaskInput) {
-            newTaskInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    addTask();
-                }
-            });
-            logDebug("Added keypress event listener for newTaskInput");
-        }
-        
-        // Setup calendar navigation
-        setupCalendarNavigation();
-        
-        // Update Jedi header
-        updateJediHeader();
-        
-        logDebug('App initialization complete');
-    }
-    
-    function setupCalendarNavigation() {
-        const prevMonthBtn = document.getElementById('prevMonth');
-        const nextMonthBtn = document.getElementById('nextMonth');
-        
-        if (prevMonthBtn) {
-            prevMonthBtn.addEventListener('click', () => {
-                displayedMonth--;
-                if (displayedMonth < 0) {
-                    displayedMonth = 11;
-                    displayedYear--;
-                }
-                renderCalendar(displayedMonth, displayedYear);
-            });
-        }
-        
-        if (nextMonthBtn) {
-            nextMonthBtn.addEventListener('click', () => {
-                displayedMonth++;
-                if (displayedMonth > 11) {
-                    displayedMonth = 0;
-                    displayedYear++;
-                }
-                renderCalendar(displayedMonth, displayedYear);
-            });
-        }
-    }
-    
-    function saveIntention() {
-        dailyIntention = document.getElementById('dailyIntention').innerText.trim();
-        intentionSuccess = document.getElementById('intentionSuccess').value.trim();
-        
-        logDebug(`Daily intention updated: ${dailyIntention}`);
-        
-        // Save to Firebase
-        saveDataToFirebase();
-    }
+   // Story Notes Functions
+   function addStoryNote() {
+       const storyNoteInput = document.getElementById('storyNoteInput');
+       const noteText = storyNoteInput.value.trim();
+       
+       if (noteText) {
+           const newNote = {
+               id: Date.now(),
+               text: noteText,
+               completed: false,
+               createdAt: new Date().toISOString()
+           };
+           
+           storyNotes.push(newNote);
+           storyNoteInput.value = '';
+           
+           logDebug(`Added new story note: ${noteText}`);
+           
+           // Save to Firebase
+           saveDataToFirebase();
+           
+           // Re-render story notes
+           renderStoryNotes();
+       }
+   }
 
-    function setupIntentionListeners() {
-    // Set up scene listeners
-    setupSceneListeners();
-    
-    // Set up deadline listeners
-    setupDeadlineListeners();
-}
-    
-    function setupSceneListeners() {
-        const sceneSwitchEl = document.getElementById('sceneTypeSwitch');
-        const headFieldsEl = document.getElementById('headSceneFields');
-        const tailFieldsEl = document.getElementById('tailSceneFields');
-        const saveSceneBtn = document.getElementById('saveScene');
-        const tagInput = document.getElementById('tagInput');
-        const tagDropdown = document.getElementById('tagDropdown');
-        const tagOptions = document.querySelectorAll('.tag-option');
-        const selectedTagsContainer = document.getElementById('selectedTags');
-        
-        if (tagInput && tagDropdown) {
-            // Show dropdown when input is clicked
-            tagInput.addEventListener('click', function() {
-                tagDropdown.classList.add('show');
-            });
-            
-            // Close dropdown when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!tagInput.contains(e.target) && !tagDropdown.contains(e.target)) {
-                    tagDropdown.classList.remove('show');
-                }
-            });
-            
-            // Add tag when option is clicked
-            tagOptions.forEach(option => {
-                option.addEventListener('click', function() {
-                    const value = this.getAttribute('data-value');
-                    const text = this.textContent;
-                    
-                    logDebug('Tag clicked: ' + value + ' - ' + text);
-                    
-                    // Add if not already selected
-                    if (!selectedTags.includes(value)) {
-                        selectedTags.push(value);
-                        addTagToDisplay(value, text);
-                        this.classList.add('selected');
-                        logDebug('Added tag: ' + value + ', selectedTags now: ' + JSON.stringify(selectedTags));
-                    } else {
-                        // Remove if already selected
-                        selectedTags = selectedTags.filter(tag => tag !== value);
-                        removeTagFromDisplay(value);
-                        this.classList.remove('selected');
-                        logDebug('Removed tag: ' + value + ', selectedTags now: ' + JSON.stringify(selectedTags));
-                    }
-                });
-            });
-        }
-        
-        // Toggle between Head and Tail scene
-        if (sceneSwitchEl) {
-            sceneSwitchEl.addEventListener('change', function() {
-                if (this.checked) {
-                    // Show Tail fields, hide Head fields
-                    headFieldsEl.style.display = 'none';
-                    tailFieldsEl.style.display = 'block';
-                } else {
-                    // Show Head fields, hide Tail fields
-                    headFieldsEl.style.display = 'block';
-                    tailFieldsEl.style.display = 'none';
-                }
-            });
-        }
-        
-        // Save scene data
-        if (saveSceneBtn) {
-            saveSceneBtn.addEventListener('click', function() {
-                logDebug('Save button clicked');
-                saveSceneData();
-                
-                // After saving, run our debug check
-                setTimeout(debugCheckFirebaseData, 1000); // Check 1 second after save
-            });
-        }
-    }
-    
-    function saveSceneData() {
-        logDebug('===== SAVE SCENE DATA FUNCTION CALLED =====');
-        
-        // Get common field values
-        const sceneTitle = document.getElementById('sceneTitle').value;
-        const sceneSynopsis = document.getElementById('sceneSynopsis').value;
-        const sceneTime = document.getElementById('sceneTime').value;
-        const sceneWeather = document.getElementById('sceneWeather').value;
-        const sceneCharacters = document.getElementById('sceneCharacters').value;
-        
-        // Log the current state of selectedTags
-        logDebug('Current selectedTags: ' + JSON.stringify(selectedTags));
-        
-        // Determine scene type
-        const isHeadScene = !document.getElementById('sceneTypeSwitch').checked;
-        
-        // Get scene-specific field values
-        let specificFields = {};
-        
-        if (isHeadScene) {
-            specificFields = {
-                goal: document.getElementById('sceneGoal').value,
-                conflict: document.getElementById('sceneConflict').value,
-                disaster: document.getElementById('sceneDisaster').value
-            };
-        } else {
-            specificFields = {
-                reaction: document.getElementById('sceneReaction').value,
-                dilemma: document.getElementById('sceneDilemma').value,
-                decision: document.getElementById('sceneDecision').value
-            };
-        }
-        
-        // Create scene data object
-const sceneData = {
-    type: isHeadScene ? 'head' : 'tail',
-    title: sceneTitle,
-    synopsis: sceneSynopsis,
-    time: sceneTime,
-    weather: sceneWeather,
-    characters: sceneCharacters,
-    psychKeys: [...selectedTags], // Make a copy
-    deadline: sceneDeadline, // Add deadline to saved data
-    specificFields: specificFields
-};
-        
-        // Log the full scene data for debugging
-        logDebug('Complete scene data object: type=' + sceneData.type + 
-                ', title=' + sceneData.title + 
-                ', psychKeys=' + JSON.stringify(sceneData.psychKeys));
-        
-        // Replace dailyIntention in your data structure
-        dailyIntention = JSON.stringify(sceneData);
-        
-        // Log the stringify result
-        logDebug('Stringified dailyIntention: ' + dailyIntention.substring(0, 100) + '...');
-        
-        // Save to Firebase
-        saveDataToFirebase();
-        
-        logDebug('Scene data saved to Firebase');
-        
-        // Show confirmation
-        alert('Scene saved successfully!');
-    }
-    
-    function loadSceneData(sceneData) {
-        if (!sceneData) return;
-        
-        try {
-            // Safely set values using a helper function
-            const safeSetValue = (id, value) => {
-                const el = document.getElementById(id);
-                if (el) el.value = value || '';
-            };
-            
-            // Set common fields
-            safeSetValue('sceneTitle', sceneData.title);
-            safeSetValue('sceneSynopsis', sceneData.synopsis);
-            safeSetValue('sceneTime', sceneData.time);
-            safeSetValue('sceneWeather', sceneData.weather);
-            safeSetValue('sceneCharacters', sceneData.characters);
-          
-          // Load deadline
-if (sceneData.deadline) {
-    sceneDeadline = sceneData.deadline;
-    const deadlineInput = document.getElementById('sceneDeadline');
-    if (deadlineInput) {
-        deadlineInput.value = sceneDeadline;
-        updateDeadlineStatus();
-    }
-}
-            
-            // Handle psychKeys properly - this is the fixed section
-            if (sceneData.psychKeys && Array.isArray(sceneData.psychKeys)) {
-                // Log what we're loading
-                logDebug('Loading psychKeys from scene data: ' + JSON.stringify(sceneData.psychKeys));
-                
-                // Clear selectedTags array
-                selectedTags = [];
-                
-                // Clear existing tags from the UI
-                const selectedTagsContainer = document.getElementById('selectedTags');
-                if (selectedTagsContainer) {
-                    selectedTagsContainer.innerHTML = '';
-                    
-                    // Remove selected class from all tag options
-                    document.querySelectorAll('.tag-option.selected').forEach(option => {
-                        option.classList.remove('selected');
-                    });
-                    
-                    // Add each tag
-                    sceneData.psychKeys.forEach(value => {
-                        const option = document.querySelector(`.tag-option[data-value="${value}"]`);
-                        if (option) {
-                            selectedTags.push(value);
-                            addTagToDisplay(value, option.textContent);
-                            option.classList.add('selected');
-                            logDebug('Added tag during load: ' + value);
-                        } else {
-                            logDebug('Could not find option for tag: ' + value);
-                        }
-                    });
-                    
-                    // Log the final state of the tags array
-                    logDebug('Final loaded tags: ' + JSON.stringify(selectedTags));
-                } else {
-                    logDebug('selectedTagsContainer not found during load');
-                }
-            }
-            
-            // Safely set checkbox
-            const switchEl = document.getElementById('sceneTypeSwitch');
-            if (switchEl) switchEl.checked = sceneData.type === 'tail';
-            
-            // Safely toggle visibility
-            const headEl = document.getElementById('headSceneFields');
-            const tailEl = document.getElementById('tailSceneFields');
-            
-            if (headEl && tailEl) {
-                if (sceneData.type === 'head') {
-                    headEl.style.display = 'block';
-                    tailEl.style.display = 'none';
-                } else {
-                    headEl.style.display = 'none';
-                    tailEl.style.display = 'block';
-                }
-            }
-            
-            // Set scene-specific fields
-            if (sceneData.specificFields) {
-                if (sceneData.type === 'head') {
-                    safeSetValue('sceneGoal', sceneData.specificFields.goal);
-                    safeSetValue('sceneConflict', sceneData.specificFields.conflict);
-                    safeSetValue('sceneDisaster', sceneData.specificFields.disaster);
-                } else {
-                    safeSetValue('sceneReaction', sceneData.specificFields.reaction);
-                    safeSetValue('sceneDilemma', sceneData.specificFields.dilemma);
-                    safeSetValue('sceneDecision', sceneData.specificFields.decision);
-                }
-            }
-            
-            logDebug('Scene data loaded successfully');
-        } catch (error) {
-            logDebug(`Error loading scene data: ${error.message}`);
-            console.error('Error loading scene data:', error);
-        }
-    }
-    
-    // Function to load data from Firebase
-    function loadDataFromFirebase() {
-        showLoading();
-        logDebug(`Loading data for user: ${userId}`);
-        
-        // Check if userId is valid
-        if (!userId) {
-            logDebug('No user ID available');
-            hideLoading();
-            alert('No user is logged in. Please log in to load your data.');
-            return;
-        }
-        
-        try {
-            firebase.database().ref(`users/${userId}`).once('value')
-                .then((snapshot) => {
-                    const userData = snapshot.val();
-                    logDebug(`User data loaded: ${userData ? 'success' : 'no data found'}`);
-                    
-                    if (userData) {
-                        // Process tasks
-                        if (userData.tasks) {
-                            if (!Array.isArray(userData.tasks)) {
-                                const tasksArray = [];
-                                Object.keys(userData.tasks).forEach(key => {
-                                    if (userData.tasks[key] !== null) {
-                                        tasksArray.push(userData.tasks[key]);
-                                    }
-                                });
-                                tasks = tasksArray;
-                            } else {
-                                tasks = userData.tasks.filter(task => task !== null);
-                            }
-                            logDebug(`Loaded ${tasks.length} tasks`);
-                        } else {
-                            tasks = [];
-                            logDebug('No tasks found, initializing empty array');
-                        }
-                        
-                        // Process last active date
-                        if (userData.lastActiveDate) {
-                            lastActiveDate = userData.lastActiveDate;
-                            logDebug(`Last active date: ${lastActiveDate}`);
-                        } else {
-                            lastActiveDate = new Date().toISOString();
-                            logDebug('No last active date found, using current date');
-                        }
-                        
-                        // Process daily intention (which might now be scene data)
-                        if (userData.dailyIntention) {
-                            dailyIntention = userData.dailyIntention;
-                            
-                            // Try to parse it as scene data
-                            try {
-                                const sceneData = JSON.parse(dailyIntention);
-                                if (sceneData.type) {
-                                    // It's scene data, load it into the scene interface
-                                    loadSceneData(sceneData);
-                                }
-                            } catch (error) {
-                                // It's not JSON, probably old format
-                                logDebug("Daily intention is not in scene data format");
-                            }
-                        }
+   function toggleStoryNoteComplete(noteId) {
+       const noteIndex = storyNotes.findIndex(note => note.id === noteId);
+       if (noteIndex !== -1) {
+           storyNotes[noteIndex].completed = !storyNotes[noteIndex].completed;
+           
+           logDebug(`Story note ${noteId} ${storyNotes[noteIndex].completed ? 'completed' : 'uncompleted'}`);
+           
+           // Save to Firebase
+           saveDataToFirebase();
+           
+           // Re-render story notes
+           renderStoryNotes();
+       }
+   }
 
-                        // We don't need intention success anymore, but we'll keep it in the data model
-                        if (userData.intentionSuccess) {
-                            intentionSuccess = userData.intentionSuccess;
-                        }
-                      
-                      // Load scene deadline
-if (userData.sceneDeadline) {
-    sceneDeadline = userData.sceneDeadline;
-    logDebug('Loaded scene deadline: ' + sceneDeadline);
-} else {
-    sceneDeadline = null;
-    logDebug('No scene deadline found');
-}
-                        
-                        // Process calendar data
-                        if (userData.calendarData) {
-                            calendarData = userData.calendarData;
-                            logDebug('Loaded calendar data');
-                        } else {
-                            calendarData = {};
-                            logDebug('No calendar data found, initializing empty object');
-                        }
-                    } else {
-                        // Initialize new user with default data
-                        initializeDefaultData();
-                    }
-                    
-                    // Render UI with loaded data
-                    renderTasks();
-                    renderCalendar(displayedMonth, displayedYear);
-                    updateStreakInfo();
-                    updateJediHeader();
-                    
-                    hideLoading();
-                })
-                .catch((error) => {
-                    console.error("Firebase loading error:", error);
-                    logDebug(`Firebase loading error: ${error.message}`);
-                    
-                    // Initialize with default data if error
-                    initializeDefaultData();
-                    renderTasks();
-                    renderCalendar(displayedMonth, displayedYear);
-                    updateJediHeader();
-                    
-                    hideLoading();
-                    
-                    // Show error to user
-                    alert(`Error loading your data: ${error.message}. Default data has been loaded.`);
-                });
-        } catch (error) {
-            logDebug(`Critical error loading data: ${error.message}`);
-            hideLoading();
-            
-            // Initialize with default data if error
-            initializeDefaultData();
-            renderTasks();
-            renderCalendar(displayedMonth, displayedYear);
-            updateJediHeader();
-            
-            alert(`Critical error loading data: ${error.message}. Default data has been loaded.`);
-        }
-    }
-    
-    // Function to save data to Firebase
-    function saveDataToFirebase() {
-        logDebug('Saving data to Firebase...');
-        
-        // Check if userId is valid
-        if (!userId) {
-            logDebug('No user ID available, cannot save data');
-            alert('No user is logged in. Please log in to save your data.');
-            return;
-        }
-        
-        // Create a clean copy of the data to save
-        // This prevents Firebase from rejecting the data due to circular references
-        const cleanTasks = tasks.map(task => ({
-            id: task.id,
-            name: task.name,
-            category: task.category,
-            completed: task.completed
-        }));
-        
-        // Update the last active date
-        lastActiveDate = new Date().toISOString();
-        
-        // Firebase reference for this user's data
-        const userRef = firebase.database().ref(`users/${userId}`);
-        
-        // Data to save
-const dataToSave = {
-    tasks: cleanTasks,
-    dailyIntention: dailyIntention,
-    intentionSuccess: intentionSuccess,
-    sceneDeadline: sceneDeadline, // Add deadline to saved data
-    lastActiveDate: lastActiveDate,
-    calendarData: calendarData,
-    lastUpdated: new Date().toISOString()
-};
-        
-        try {
-            // CHECKING DAILY INTENTION BEFORE SAVE
-            logDebug('CHECKING DAILY INTENTION BEFORE SAVE:');
-            try {
-                const intentionCheck = JSON.parse(dataToSave.dailyIntention);
-                logDebug('- Parsed successfully: ' + (intentionCheck ? 'yes' : 'no'));
-                logDebug('- Has psychKeys: ' + (intentionCheck.psychKeys ? 'yes' : 'no'));
-                logDebug('- psychKeys content: ' + JSON.stringify(intentionCheck.psychKeys || []));
-            } catch (e) {
-                logDebug('- ERROR parsing dailyIntention: ' + e.message);
-            }
-            
-            // Save data with error handling
-            userRef.set(dataToSave)
-                .then(() => {
-                    logDebug('Data saved successfully');
-                })
-                .catch((error) => {
-                    console.error("Firebase saving error:", error);
-                    logDebug(`Firebase saving error: ${error.message}`);
-                    alert(`Error saving your data: ${error.message}. Your changes may not be persisted.`);
-                });
-        } catch (error) {
-            logDebug(`Critical error saving data: ${error.message}`);
-            alert(`Critical error saving data: ${error.message}`);
-        }
-    }
-    
-    // Modified renderTasks function to add .completed class to completed tasks
-    function renderTasks() {
-        if (!taskTableBody) {
-            logDebug('Task table body element not found');
-            return;
-        }
-        
-        taskTableBody.innerHTML = '';
-        logDebug('Rendering tasks list');
-        
-        // Find the first uncompleted task
-        const nextTaskIndex = tasks.findIndex(task => !task.completed);
-        
-        tasks.forEach((task, index) => {
-            const row = document.createElement('tr');
-            row.className = 'task-row';
-            
-            // Set category class
-            const categoryClass = task.category.toLowerCase().replace(/\s+/g, '-');
-            row.classList.add(categoryClass);
-            
-            // Add completed class for checked tasks
-            if (task.completed) {
-                row.classList.add('completed');
-            }
-            
-            // Mark next task
-            if (index === nextTaskIndex) {
-                row.classList.add('next-up');
-            }
-            
-            // Task name cell
-            const taskCell = document.createElement('td');
-            taskCell.className = 'task-cell';
-            
-            // Add "NEXT UP" badge if it's the next uncompleted task
-            if (index === nextTaskIndex) {
-                const badge = document.createElement('span');
-                badge.className = 'next-up-badge';
-                badge.textContent = 'NEXT UP';
-                taskCell.appendChild(badge);
-            }
-            
-            const taskName = document.createElement('span');
-            taskName.className = 'task-name';
-            taskName.textContent = task.name;
-            taskName.setAttribute('contenteditable', 'true');
-            
-            // Add the completed class to the task name element as well
-            if (task.completed) {
-                taskName.style.textDecoration = 'line-through';
-                taskName.style.opacity = '0.6';
-            }
-            
-            taskName.addEventListener('blur', (e) => {
-                updateTaskName(task.id, e.target.textContent);
-            });
-            taskCell.appendChild(taskName);
-            row.appendChild(taskCell);
-            
-            // Checkbox cell
-            const checkboxCell = document.createElement('td');
-            checkboxCell.className = 'task-cell checkbox-cell';
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.className = 'custom-checkbox';
-            checkbox.checked = task.completed;
-            checkbox.addEventListener('change', () => {
-                toggleTaskComplete(task.id);
-            });
-            checkboxCell.appendChild(checkbox);
-            row.appendChild(checkboxCell);
-            
-            // Category select cell
-            const categoryCell = document.createElement('td');
-            categoryCell.className = 'task-cell category-cell';
-            const categorySelect = document.createElement('select');
-            categorySelect.className = 'category-select';
-            
-            const categories = ['Physical Cultivation', 'Mental Disciplines', 'Professional Mastery', 'Creative Force'];
-            categories.forEach(category => {
-                const option = document.createElement('option');
-                option.value = category;
-                option.textContent = category;
-                option.selected = category === task.category;
-                categorySelect.appendChild(option);
-            });
-            
-            categorySelect.addEventListener('change', (e) => {
-                updateTaskCategory(task.id, e.target.value);
-            });
-            
-            categoryCell.appendChild(categorySelect);
-            row.appendChild(categoryCell);
-            
-            // Delete button cell
-            const actionCell = document.createElement('td');
-            actionCell.className = 'task-cell action-cell';
-            const deleteBtn = document.createElement('button');
-            deleteBtn.className = 'delete-btn';
-            deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
-            deleteBtn.addEventListener('click', () => {
-                deleteTask(task.id);
-            });
-            actionCell.appendChild(deleteBtn);
-            row.appendChild(actionCell);
-            
-            taskTableBody.appendChild(row);
-        });
-        
-        // Update Jedi header after rendering tasks
-        updateJediHeader();
-    }
-    
-    // Function to show task completion animation
-    function showTaskCompletionAnimation(category) {
-        // Set the overlay class based on the category
-        taskCompleteOverlay.className = 'task-complete-overlay';
-        taskCompleteOverlay.classList.add(category.toLowerCase().replace(/\s+/g, '-'));
-        
-        // Set message based on category
-        let message = 'TASK COMPLETE!';
-        switch(category) {
-            case 'Mental Disciplines':
-                message = 'MIND STRENGTHENED!';
-                break;
-            case 'Creative Force':
-                message = 'CREATIVE FORCE FLOWS!';
-                break;
-            case 'Physical Cultivation':
-                message = 'PHYSICAL POWER UP!';
-                break;
-            case 'Professional Mastery':
-                message = 'MASTERY ACHIEVED!';
-                break;
-        }
-        taskCompleteMessage.textContent = message;
-        
-        // Show the animation
-        taskCompleteOverlay.classList.add('active');
-        
-        // Hide after animation completes
-        setTimeout(() => {
-            taskCompleteOverlay.classList.remove('active');
-        }, 1500);
-    }
-    
-    function toggleTaskComplete(taskId) {
-        const taskIndex = tasks.findIndex(task => task.id === taskId);
-        if (taskIndex !== -1) {
-            const wasCompleted = tasks[taskIndex].completed;
-            tasks[taskIndex].completed = !wasCompleted;
-            
-            logDebug(`Task ${taskId} ${wasCompleted ? 'uncompleted' : 'completed'}`);
-            
-            // If task was just completed, show animation
-            if (!wasCompleted) {
-                const category = tasks[taskIndex].category;
-                showTaskCompletionAnimation(category);
-            }
-            
-            // Update calendar data for today
-            updateCalendarData();
-            
-            // Save to Firebase
-            saveDataToFirebase();
-            
-            // Re-render tasks and update header
-            renderTasks();
-            updateJediHeader();
-        }
-    }
-    
-    function updateTaskName(taskId, newName) {
-        const taskIndex = tasks.findIndex(task => task.id === taskId);
-        if (taskIndex !== -1) {
-            tasks[taskIndex].name = newName;
-            logDebug(`Updated task ${taskId} name: ${newName}`);
-            
-            // Save to Firebase
-            saveDataToFirebase();
-        }
-    }
-    
-    function updateTaskCategory(taskId, newCategory) {
-        const taskIndex = tasks.findIndex(task => task.id === taskId);
-        if (taskIndex !== -1) {
-            tasks[taskIndex].category = newCategory;
-            logDebug(`Updated task ${taskId} category: ${newCategory}`);
-            
-            // Save to Firebase
-            saveDataToFirebase();
-            
-            // Re-render tasks to update styling
-            renderTasks();
-        }
-    }
-    
-    function deleteTask(taskId) {
-        tasks = tasks.filter(task => task.id !== taskId);
-        logDebug(`Deleted task ${taskId}`);
-        
-        // Save to Firebase
-        saveDataToFirebase();
-        
-        // Re-render tasks
-        renderTasks();
-        
-        // Update calendar data
-        updateCalendarData();
-    }
-    
-    function addTask() {
-        const newTaskInput = document.getElementById('newTaskInput');
-        const newTaskCategory = document.getElementById('newTaskCategory');
-        
-        if (!newTaskInput || !newTaskCategory) {
-            logDebug('Task input elements not found');
-            return;
-        }
-        
-        const taskName = newTaskInput.value.trim();
-        const category = newTaskCategory.value;
-        
-        if (taskName) {
-            // Generate new ID (just using the next number in sequence for simplicity)
-            const newId = tasks.length > 0 ? Math.max(...tasks.map(task => task.id)) + 1 : 1;
-            
-            const newTask = {
-                id: newId,
-                name: taskName,
-                category: category,
-                completed: false
-            };
-            
-            tasks.push(newTask);
-            logDebug(`Added new task: ${JSON.stringify(newTask)}`);
-            
-            // Clear input
-            newTaskInput.value = '';
-            
-            // Save to Firebase
-            saveDataToFirebase();
-            
-            // Re-render tasks
-            renderTasks();
-            
-            // Update calendar data
-            updateCalendarData();
-        }
-    }
-    
-    // Reset All Tasks button functionality
-    function resetTasks() {
-        if (confirm("Are you sure you want to reset all tasks? This will mark all tasks as incomplete.")) {
-            logDebug('Resetting all tasks to incomplete');
-            
-            // Reset all tasks to incomplete
-            tasks.forEach(task => {
-                task.completed = false;
-            });
-            
-            // Update calendar data for today
-            updateCalendarData();
-            
-            // Save to Firebase
-            saveDataToFirebase();
-            
-            // Re-render tasks
-            renderTasks();
-            updateJediHeader();
-            
-            logDebug('Tasks reset complete');
-        }
-    }
-    
-    // Jedi Header Functions
-    function updateJediHeader() {
-        // Get DOM elements
-        const progressBar = document.getElementById('dailyProgressBar');
-        const progressSummary = document.getElementById('progressSummary');
-        const tasksSummary = document.getElementById('tasksSummary');
-        
-        if (!progressBar || !progressSummary || !tasksSummary) {
-            logDebug('Jedi header elements not found');
-            return;
-        }
-        
-        // Calculate overall progress
-        const totalTasks = tasks.length;
-        const completedTasks = tasks.filter(task => task.completed).length;
-        const progressPercentage = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
-        
-        // Update progress bar
-        progressBar.style.width = `${progressPercentage}%`;
-        
-        // Set lightsaber color based on most recent completed task category
-        let dominantColor = 'var(--mental-color)';
-        
-        // Find the most recently completed task (if any)
-        const completedTasksList = tasks.filter(task => task.completed);
-        if (completedTasksList.length > 0) {
-            const lastCompletedTask = completedTasksList[completedTasksList.length - 1];
-            
-            switch (lastCompletedTask.category) {
-                case 'Mental Disciplines':
-                    dominantColor = 'var(--mental-color)';
-                    break;
-                case 'Creative Force':
-                    dominantColor = 'var(--creative-color)';
-                    break;
-                case 'Physical Cultivation':
-                    dominantColor = 'var(--physical-color)';
-                    break;
-                case 'Professional Mastery':
-                    dominantColor = 'var(--professional-color)';
-                    break;
-            }
-        }
-        
-        progressBar.style.background = `linear-gradient(90deg, rgba(255,255,255,0.9), ${dominantColor})`;
-        progressBar.style.boxShadow = `0 0 8px ${dominantColor}, 0 0 15px ${dominantColor}`;
-        
-        // Add pulsing animation for the lightsaber glow
-        progressBar.style.animation = `lightsaberHum 2s infinite`;
-        
-        // Update progress text
-        progressSummary.textContent = `Daily progress: ${progressPercentage}%`;
-        tasksSummary.textContent = `${completedTasks}/${totalTasks} tasks completed`;
-        
-        logDebug(`Updated Jedi header: ${progressPercentage}% progress`);
-    }
-    
-    // Calendar Functions
-    function updateCalendarData() {
-        const today = new Date();
-        const dateStr = formatDateKey(today);
-        
-        // Count completed and total tasks
-        const totalTasks = tasks.length;
-        const completedTasks = tasks.filter(task => task.completed).length;
-        
-        // Calculate completion percentage
-        const percentage = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
-        
-        // Store the data for today
-        calendarData[dateStr] = {
-            percentage: percentage,
-            completedTasks: completedTasks,
-            totalTasks: totalTasks,
-            isComplete: percentage === 100
-        };
-        
-        // Update the calendar display
-        renderCalendar(displayedMonth, displayedYear);
-        
-        // Update streak information
-        updateStreakInfo();
-    }
-    
-    // Helper function to format date as YYYY-MM-DD for storage
-    function formatDateKey(date) {
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const day = String(date.getDate()).padStart(2, '0');
-        return `${year}-${month}-${day}`;
-    }
-    
-    // Function to render the calendar
-    function renderCalendar(month, year) {
-        const calendarGrid = document.getElementById('calendarGrid');
-        const calendarMonthYear = document.getElementById('calendarMonthYear');
-        
-        if (!calendarGrid || !calendarMonthYear) {
-            logDebug('Calendar elements not found');
-            return;
-        }
-        
-        // Clear existing calendar
-        calendarGrid.innerHTML = '';
-        
-        // Set month/year display
-        const monthNames = [
-            'January', 'February', 'March', 'April', 'May', 'June', 
-            'July', 'August', 'September', 'October', 'November', 'December'
-        ];
-        calendarMonthYear.textContent = `${monthNames[month]} ${year}`;
-        
-        // Get first day of month
-        const firstDay = new Date(year, month, 1);
-        const startingDayOfWeek = firstDay.getDay(); // 0 = Sunday, 6 = Saturday
-        
-        // Get number of days in month
-        const daysInMonth = new Date(year, month + 1, 0).getDate();
-        
-        // Get today's date for highlighting
-        const today = new Date();
-        const todayDateStr = formatDateKey(today);
-        
-        // Previous month days
-        const prevMonthDays = new Date(year, month, 0).getDate();
-        for (let i = 0; i < startingDayOfWeek; i++) {
-            const dayNum = prevMonthDays - startingDayOfWeek + i + 1;
-            const prevMonth = month === 0 ? 11 : month - 1;
-            const prevYear = month === 0 ? year - 1 : year;
-            const dateKey = formatDateKey(new Date(prevYear, prevMonth, dayNum));
-            
-            addCalendarDay(calendarGrid, dayNum, dateKey, true, false);
-        }
-        
-        // Current month days
-        for (let i = 1; i <= daysInMonth; i++) {
-            const dateKey = formatDateKey(new Date(year, month, i));
-            const isToday = dateKey === todayDateStr;
-            
-            addCalendarDay(calendarGrid, i, dateKey, false, isToday);
-        }
-        
-        // Next month days to fill calendar
-        const totalCells = 42; // 6 rows of 7 days
-        const remainingCells = totalCells - (daysInMonth + startingDayOfWeek);
-        const isFuture = (year > today.getFullYear()) || 
-                        (year === today.getFullYear() && month > today.getMonth());
-        
-        for (let i = 1; i <= remainingCells; i++) {
-            const nextMonth = month === 11 ? 0 : month + 1;
-            const nextYear = month === 11 ? year + 1 : year;
-            const dateKey = formatDateKey(new Date(nextYear, nextMonth, i));
-            
-            addCalendarDay(calendarGrid, i, dateKey, true, false, isFuture);
-        }
-    }
-    
-    // Helper function to add a day to the calendar
-    function addCalendarDay(calendarGrid, dayNum, dateKey, isOtherMonth, isToday, isFuture = false) {
-        const dayDiv = document.createElement('div');
-        dayDiv.className = 'calendar-day';
-        
-        if (isOtherMonth) {
-            dayDiv.classList.add('other-month');
-        }
-        
-        if (isToday) {
-            dayDiv.classList.add('today');
-        }
-        
-        if (isFuture) {
-            dayDiv.classList.add('future');
-        }
-        
-        // Day number
-        const dayNumDiv = document.createElement('div');
-        dayNumDiv.className = 'day-number';
-        dayNumDiv.textContent = dayNum;
-        dayDiv.appendChild(dayNumDiv);
-        
-        // Completion percentage
-        const percentageDiv = document.createElement('div');
-        percentageDiv.className = 'completion-percentage';
-        
-        // Check if we have data for this day
-        if (calendarData[dateKey]) {
-            const percentage = calendarData[dateKey].percentage;
-            percentageDiv.textContent = `${percentage}%`;
-            
-            // Apply color class based on percentage
-            if (percentage === 100) {
-                dayDiv.classList.add('completion-100');
-                
-                // Add star for 100% completion
-                const starIcon = document.createElement('i');
-                starIcon.className = 'fas fa-star complete-star';
-                dayDiv.appendChild(starIcon);
-            } else if (percentage >= 75) {
-                dayDiv.classList.add('completion-75');
-            } else if (percentage >= 50) {
-                dayDiv.classList.add('completion-50');
-            } else if (percentage > 0) {
-                dayDiv.classList.add('completion-25');
-            } else {
-                dayDiv.classList.add('completion-0');
-            }
-        } else {
-            percentageDiv.textContent = '-';
-            dayDiv.classList.add('completion-0');
-        }
-        
-        dayDiv.appendChild(percentageDiv);
-        calendarGrid.appendChild(dayDiv);
-        
-        // Add click event to show details
-        dayDiv.addEventListener('click', () => {
-            showDayDetails(dateKey, dayNum);
-        });
-    }
-    
-    // Function to show day details when clicking on a calendar day
-    function showDayDetails(dateKey, dayNum) {
-        if (calendarData[dateKey]) {
-            const data = calendarData[dateKey];
-            const message = `Day ${dayNum}: ${data.completedTasks}/${data.totalTasks} tasks completed (${data.percentage}%)`;
-            alert(message);
-        } else {
-            alert(`No data available for this day.`);
-        }
-    }
-    
-    // Function to update streak information
-    function updateStreakInfo() {
-        const currentStreakEl = document.getElementById('currentStreak');
-        const longestStreakEl = document.getElementById('longestStreak');
-        
-        if (!currentStreakEl || !longestStreakEl) {
-            logDebug('Streak elements not found');
-            return;
-        }
-        
-        // Calculate streaks
-        const { currentStreak, longestStreak } = calculateStreaks();
-        
-        // Update the display
-        currentStreakEl.textContent = `${currentStreak} day${currentStreak !== 1 ? 's' : ''}`;
-        longestStreakEl.textContent = `${longestStreak} day${longestStreak !== 1 ? 's' : ''}`;
-    }
-    
-    // Function to calculate current and longest streaks, excluding weekends
-    function calculateStreaks() {
-        const today = new Date();
-        const todayDateStr = formatDateKey(today);
-        const currentHour = today.getHours();
-        
-        // Sort all dates from calendar data
-        const dates = Object.keys(calendarData)
-            .filter(dateKey => {
-                const keyDate = new Date(dateKey + 'T00:00:00');
-                // Only count days where tasks were 100% completed
-                return keyDate <= today && calendarData[dateKey].isComplete;
-            })
-            .sort();
-        
-        if (dates.length === 0) {
-            return { currentStreak: 0, longestStreak: 0 };
-        }
-        
-        // Calculate longest streak (weekdays only)
-        let longestStreak = 0;
-        let currentLongest = 0;
-        let previousDate = null;
-        
-        for (let i = 0; i < dates.length; i++) {
-            const currentDate = new Date(dates[i] + 'T00:00:00');
-            const dayOfWeek = currentDate.getDay(); // 0 = Sunday, 6 = Saturday
-            
-            // Skip weekends for streak calculation
-            if (dayOfWeek === 0 || dayOfWeek === 6) {
-                continue;
-            }
-            
-            if (!previousDate) {
-                // First weekday in the sequence
-                currentLongest = 1;
-                previousDate = currentDate;
-                longestStreak = Math.max(longestStreak, currentLongest);
-                continue;
-            }
-            
-            // Check if this is the next business day
-            const isNextBusinessDay = isConsecutiveBusinessDay(previousDate, currentDate);
-            
-            if (isNextBusinessDay) {
-                currentLongest++;
-                longestStreak = Math.max(longestStreak, currentLongest);
-            } else {
-                currentLongest = 1;
-            }
-            
-            previousDate = currentDate;
-        }
-        
-        // Calculate current streak (weekdays only)
-        let currentStreak = 0;
-        let checkDate = new Date(today);
-        let foundIncomplete = false;
-        
-        // If today is a weekend, start checking from Friday
-        while (checkDate.getDay() === 0 || checkDate.getDay() === 6) {
-            checkDate = new Date(checkDate.getTime() - 24 * 60 * 60 * 1000);
-        }
-        
-        // Check backwards until we find a weekday that wasn't completed
-        while (!foundIncomplete) {
-            const dateStr = formatDateKey(checkDate);
-            const dayOfWeek = checkDate.getDay();
-            
-            // Skip weekends
-            if (dayOfWeek !== 0 && dayOfWeek !== 6) {
-                const isToday = dateStr === todayDateStr;
-                
-                if (calendarData[dateStr] && calendarData[dateStr].isComplete) {
-                    currentStreak++;
-                } else if (isToday) {
-                    // Special handling for today - don't break streak unless it's late in the day
-                    // and still not complete, OR if tasks have been started but not finished
-                    const todayData = calendarData[dateStr];
-                    
-                    if (!todayData) {
-                        // No data for today yet - don't break streak in the morning
-                        if (currentHour < 18) {
-                            // It's still early, don't break the streak
-                            // Continue checking previous days
-                        } else {
-                            // It's late and no progress made - break streak
-                            foundIncomplete = true;
-                            break;
-                        }
-                    } else if (todayData.percentage === 0) {
-                        // Tasks were reset but not started - don't break streak in the morning
-                        if (currentHour < 18) {
-                            // It's still early, don't break the streak
-                        } else {
-                            // It's late and no progress made - break streak
-                            foundIncomplete = true;
-                            break;
-                        }
-                    } else {
-                        // Some progress made but not complete - don't break streak yet
-                        // This allows for work-in-progress days
-                    }
-                } else {
-                    // Previous day wasn't completed - break streak
-                    foundIncomplete = true;
-                    break;
-                }
-            }
-            
-            // Go to previous day
-            checkDate = new Date(checkDate.getTime() - 24 * 60 * 60 * 1000);
-        }
-        
-        return { currentStreak, longestStreak };
-    }
+   function updateStoryNoteText(noteId, newText) {
+       const noteIndex = storyNotes.findIndex(note => note.id === noteId);
+       if (noteIndex !== -1) {
+           storyNotes[noteIndex].text = newText;
+           
+           logDebug(`Updated story note ${noteId}: ${newText}`);
+           
+           // Save to Firebase
+           saveDataToFirebase();
+       }
+   }
 
-    // Helper function to check if two dates are consecutive business days
-    function isConsecutiveBusinessDay(date1, date2) {
-        // Calculate days between (excluding weekends)
-        let count = 0;
-        let currentDate = new Date(date1);
-        currentDate.setDate(currentDate.getDate() + 1); // Start from next day
-        
-        // Count business days between date1 and date2
-        while (currentDate < date2) {
-            const dayOfWeek = currentDate.getDay();
-            if (dayOfWeek !== 0 && dayOfWeek !== 6) { // Not weekend
-                count++;
-            }
-            currentDate.setDate(currentDate.getDate() + 1);
-        }
-        
-        // Check if date2 is the next business day after date1
-        return count === 0 && date1 < date2;
-    }
-    
-    // Debug function to check Firebase data
-    function debugCheckFirebaseData() {
-        if (!userId) {
-            logDebug('No user ID available for debug check');
-            return;
-        }
-        
-        logDebug('DIRECT FIREBASE CHECK STARTED');
-        
-        firebase.database().ref(`users/${userId}`).once('value')
-            .then((snapshot) => {
-                const userData = snapshot.val();
-                logDebug('Got user data: ' + (userData ? 'yes' : 'no'));
-                
-                if (userData && userData.dailyIntention) {
-                    logDebug('Raw dailyIntention exists: ' + (userData.dailyIntention ? 'yes' : 'no'));
-                    logDebug('Length: ' + userData.dailyIntention.length);
-                    
-                    try {
-                        const parsedIntention = JSON.parse(userData.dailyIntention);
-                        logDebug('Parsed intention: ' + (parsedIntention ? 'success' : 'null'));
-                        logDebug('Has type: ' + (parsedIntention.type ? 'yes' : 'no'));
-                        logDebug('psychKeys in Firebase: ' + JSON.stringify(parsedIntention.psychKeys || []));
-                    } catch (e) {
-                        logDebug('Parse error: ' + e.message);
-                    }
-                } else {
-                    logDebug('dailyIntention not found in userData');
-                }
-                
-                logDebug('DIRECT FIREBASE CHECK COMPLETE');
-            })
-            .catch(error => {
-                logDebug('Firebase check error: ' + error.message);
-            });
-    }
-    
-    // Auth state change listener with better error handling
-    try {
-        firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-                // User is signed in
-                userId = user.uid;
-                const email = user.email;
-                
-                logDebug(`Auth state changed: User logged in (${userId})`);
-                
-                // Update UI for logged in state
-                authContainer.style.display = 'none';
-                appContent.style.display = 'block';
-                
-                // Update user display
-                const initial = email.charAt(0).toUpperCase();
-                userInitial.textContent = initial;
-                displayName.textContent = email;
-                
-                // Load user data
-                initializeApp(userId);
-            } else {
-                // User is signed out
-                logDebug('Auth state changed: User logged out');
-                
-                // Reset all data
-                tasks = [];
-                lastActiveDate = null;
-                userId = null;
-                
-                // Update UI for logged out state
-                authContainer.style.display = 'block';
-                appContent.style.display = 'none';
-                hideLoading();
-            }
-        });
-    } catch (error) {
-        logDebug(`Error setting up auth state change listener: ${error.message}`);
-        console.error('Auth state change listener error:', error);
-    }
-    
-    // Initialize when DOM is fully loaded
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log('DOM fully loaded');
-        logDebug('DOM content loaded event fired');
-        
-        // Force debug visibility
-        if (document.getElementById('debugSection')) {
-            document.getElementById('debugSection').style.display = 'block';
-        }
-        
-        // Add direct event listeners for auth buttons
-        if (loginBtn) {
-            loginBtn.addEventListener('click', login);
-            logDebug('Login button event listener added');
-        }
-        
-        if (registerBtn) {
-            registerBtn.addEventListener('click', register);
-            logDebug('Register button event listener added');
-        }
-        
-        if (logoutBtn) {
-            logoutBtn.addEventListener('click', logout);
-            logDebug('Logout button event listener added');
-        }
-        
-        // Add event listeners for Enter key on auth inputs
-        if (emailInput) {
-            emailInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') login();
-            });
-        }
-        
-        if (passwordInput) {
-            passwordInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') login();
-            });
-        }
-        
-        logDebug('Event listeners added');
-    });
+   function deleteStoryNote(noteId) {
+       storyNotes = storyNotes.filter(note => note.id !== noteId);
+       
+       logDebug(`Deleted story note ${noteId}`);
+       
+       // Save to Firebase
+       saveDataToFirebase();
+       
+       // Re-render story notes
+       renderStoryNotes();
+   }
+
+   function renderStoryNotes() {
+       const storyNotesList = document.getElementById('storyNotesList');
+       const archivedNotesContent = document.getElementById('archivedNotesContent');
+       const archivedNotesCount = document.getElementById('archivedNotesCount');
+       
+       if (!storyNotesList || !archivedNotesContent || !archivedNotesCount) {
+           logDebug('Story notes elements not found');
+           return;
+       }
+       
+       // Clear existing notes
+       storyNotesList.innerHTML = '';
+       archivedNotesContent.innerHTML = '';
+       
+       // Separate active and completed notes
+       const activeNotes = storyNotes.filter(note => !note.completed);
+       const completedNotes = storyNotes.filter(note => note.completed);
+       
+       // Render active notes
+       activeNotes.forEach(note => {
+           const noteItem = document.createElement('div');
+           noteItem.className = 'story-note-item';
+           noteItem.innerHTML = `
+               <input type="checkbox" class="story-note-checkbox" ${note.completed ? 'checked' : ''}>
+               <div class="story-note-text" contenteditable="true">${note.text}</div>
+               <button class="story-note-delete"><i class="fas fa-trash"></i></button>
+           `;
+           
+           // Add event listeners
+           const checkbox = noteItem.querySelector('.story-note-checkbox');
+           const textDiv = noteItem.querySelector('.story-note-text');
+           const deleteBtn = noteItem.querySelector('.story-note-delete');
+           
+           checkbox.addEventListener('change', () => {
+               toggleStoryNoteComplete(note.id);
+           });
+           
+           textDiv.addEventListener('blur', () => {
+               updateStoryNoteText(note.id, textDiv.textContent.trim());
+           });
+           
+           deleteBtn.addEventListener('click', () => {
+               if (confirm('Are you sure you want to delete this note?')) {
+                   deleteStoryNote(note.id);
+               }
+           });
+           
+           storyNotesList.appendChild(noteItem);
+       });
+       
+       // Render completed notes in archive
+       completedNotes.forEach(note => {
+           const noteItem = document.createElement('div');
+           noteItem.className = 'archived-note-item';
+           noteItem.textContent = note.text;
+           archivedNotesContent.appendChild(noteItem);
+       });
+       
+       // Update count
+       archivedNotesCount.textContent = completedNotes.length;
+       
+       logDebug(`Rendered ${activeNotes.length} active and ${completedNotes.length} archived story notes`);
+   }
+
+   function setupStoryNotesListeners() {
+       const addStoryNoteBtn = document.getElementById('addStoryNoteBtn');
+       const storyNoteInput = document.getElementById('storyNoteInput');
+       const archivedNotesHeader = document.getElementById('archivedNotesHeader');
+       const archivedNotesContent = document.getElementById('archivedNotesContent');
+       const archivedNotesIcon = document.getElementById('archivedNotesIcon');
+       
+       if (addStoryNoteBtn) {
+           addStoryNoteBtn.addEventListener('click', addStoryNote);
+       }
+       
+       if (storyNoteInput) {
+           storyNoteInput.addEventListener('keypress', (e) => {
+               if (e.key === 'Enter') {
+                   addStoryNote();
+               }
+           });
+       }
+       
+       // Setup accordion for archived notes
+       if (archivedNotesHeader) {
+           archivedNotesHeader.addEventListener('click', () => {
+               const isExpanded = archivedNotesContent.classList.contains('expanded');
+               
+               if (isExpanded) {
+                   archivedNotesContent.classList.remove('expanded');
+                   archivedNotesIcon.style.transform = 'rotate(0deg)';
+               } else {
+                   archivedNotesContent.classList.add('expanded');
+                   archivedNotesIcon.style.transform = 'rotate(180deg)';
+               }
+           });
+       }
+   }
+
+   // Global function to add tags to the display
+   function addTagToDisplay(value, text) {
+       const selectedTagsContainer = document.getElementById('selectedTags');
+       if (!selectedTagsContainer) {
+           logDebug('addTagToDisplay failed: container not found');
+           return;
+       }
+       
+       const tagEl = document.createElement('div');
+       tagEl.className = 'tag';
+       tagEl.setAttribute('data-value', value);
+       tagEl.innerHTML = `${text} <span class="remove-tag">×</span>`;
+       
+       // Add remove functionality
+       tagEl.querySelector('.remove-tag').addEventListener('click', function(e) {
+           e.stopPropagation();
+           removeTagFromDisplay(value);
+           
+           // Update dropdown selection
+           const option = document.querySelector(`.tag-option[data-value="${value}"]`);
+           if (option) option.classList.remove('selected');
+           
+           // Update selected tags array
+           selectedTags = selectedTags.filter(tag => tag !== value);
+           logDebug('Removed tag: ' + value + ', remaining tags: ' + JSON.stringify(selectedTags));
+       });
+       
+       selectedTagsContainer.appendChild(tagEl);
+       logDebug('Added tag to display: ' + value);
+   }
+
+   // Global function to remove tags from display
+   function removeTagFromDisplay(value) {
+       const selectedTagsContainer = document.getElementById('selectedTags');
+       if (!selectedTagsContainer) {
+           logDebug('removeTagFromDisplay failed: container not found');
+           return;
+       }
+       
+       const tag = selectedTagsContainer.querySelector(`.tag[data-value="${value}"]`);
+       if (tag) {
+           tag.remove();
+           logDebug('Removed tag element: ' + value);
+       } else {
+           logDebug('Could not find tag element to remove: ' + value);
+       }
+   }
+
+   // Global function to clear all tags
+   function clearTags() {
+       const selectedTagsContainer = document.getElementById('selectedTags');
+       if (selectedTagsContainer) {
+           selectedTagsContainer.innerHTML = '';
+       }
+       
+       selectedTags = [];
+       
+       document.querySelectorAll('.tag-option.selected').forEach(option => {
+           option.classList.remove('selected');
+       });
+       
+       logDebug('All tags cleared');
+   }
+   
+   // FIXED DEADLINE FUNCTIONS - Now uses 11:59pm as deadline time
+   function updateDeadlineStatus() {
+       const deadlineInput = document.getElementById('sceneDeadline');
+       const deadlineStatus = document.getElementById('deadlineStatus');
+       const deadlineText = document.getElementById('deadlineText');
+       
+       if (!deadlineInput || !deadlineStatus || !deadlineText) return;
+       
+       const deadlineValue = deadlineInput.value;
+       
+       if (!deadlineValue) {
+           deadlineStatus.className = 'deadline-status upcoming';
+           deadlineText.textContent = 'No deadline set';
+           return;
+       }
+       
+       // Create deadline date at 11:59:59 PM
+       const deadlineDate = new Date(deadlineValue + 'T23:59:59');
+       const now = new Date();
+       const timeDiff = deadlineDate - now;
+       const hoursDiff = Math.ceil(timeDiff / (1000 * 60 * 60));
+       const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+       
+       // Remove all status classes
+       deadlineStatus.className = 'deadline-status';
+       
+       if (timeDiff < 0) {
+           // Past deadline
+           deadlineStatus.classList.add('late');
+           deadlineText.innerHTML = '<i class="fas fa-exclamation-triangle deadline-icon"></i> LATE!';
+       } else if (hoursDiff <= 24) {
+           // Due today or within 24 hours
+           deadlineStatus.classList.add('urgent');
+           if (hoursDiff <= 1) {
+               deadlineText.innerHTML = '<i class="fas fa-fire deadline-icon"></i> Due in 1h';
+           } else if (hoursDiff <= 12) {
+               deadlineText.innerHTML = `<i class="fas fa-fire deadline-icon"></i> Due in ${hoursDiff}h`;
+           } else {
+               deadlineText.innerHTML = '<i class="fas fa-fire deadline-icon"></i> Due today';
+           }
+       } else if (daysDiff <= 3) {
+           // Due soon (2-3 days)
+           deadlineStatus.classList.add('soon');
+           deadlineText.innerHTML = `<i class="fas fa-clock deadline-icon"></i> ${daysDiff} days left`;
+       } else {
+           // Plenty of time
+           deadlineStatus.classList.add('upcoming');
+           deadlineText.innerHTML = `<i class="fas fa-calendar-check deadline-icon"></i> ${daysDiff} days left`;
+       }
+       
+       logDebug(`Deadline status updated: ${daysDiff} days left, ${hoursDiff} hours left`);
+   }
+
+   function setupDeadlineListeners() {
+       const deadlineInput = document.getElementById('sceneDeadline');
+       
+       if (deadlineInput) {
+           deadlineInput.addEventListener('change', function() {
+               sceneDeadline = this.value;
+               updateDeadlineStatus();
+               logDebug('Scene deadline changed: ' + sceneDeadline);
+           });
+           
+           // Update status immediately on load
+           updateDeadlineStatus();
+           
+           // Update status every minute to keep time-sensitive info current
+           setInterval(updateDeadlineStatus, 60000);
+       }
+   }
+     
+   // Loading indicator functions
+   function showLoading() {
+       if (loadingIndicator) {
+           loadingIndicator.style.display = 'block';
+           logDebug("Loading indicator shown");
+       }
+   }
+   
+   function hideLoading() {
+       if (loadingIndicator) {
+           loadingIndicator.style.display = 'none';
+           logDebug("Loading indicator hidden");
+       }
+   }
+   
+   // Initialize Firebase
+   try {
+       logDebug("Initializing Firebase...");
+       firebase.initializeApp(firebaseConfig);
+       logDebug('Firebase initialized successfully');
+       document.getElementById('firebaseStatus').textContent = 'Firebase Sync: ON';
+   } catch (error) {
+       logDebug(`Firebase initialization error: ${error.message}`);
+       console.error('Firebase initialization error:', error);
+       document.getElementById('firebaseStatus').textContent = 'Firebase Sync: ERROR';
+       document.getElementById('firebaseStatus').style.color = '#ef4444';
+   }
+   
+   // Login function
+   function login() {
+       const email = emailInput.value.trim();
+       const password = passwordInput.value.trim();
+       
+       logDebug(`Attempting login with email: ${email}`);
+       
+       if (!email || !password) {
+           authError.textContent = "Please enter both email and password";
+           return;
+       }
+       
+       showLoading();
+       
+       try {
+           firebase.auth().signInWithEmailAndPassword(email, password)
+               .then((userCredential) => {
+                   emailInput.value = '';
+                   passwordInput.value = '';
+                   authError.textContent = '';
+                   logDebug(`User logged in: ${userCredential.user.uid}`);
+               })
+               .catch((error) => {
+                   authError.textContent = error.message;
+                   logDebug(`Login error: ${error.message}`);
+                   hideLoading();
+               });
+       } catch (error) {
+           logDebug(`Critical login error: ${error.message}`);
+           authError.textContent = "Login failed: " + error.message;
+           hideLoading();
+       }
+   }
+   
+   // Register function
+   function register() {
+       const email = emailInput.value.trim();
+       const password = passwordInput.value.trim();
+       
+       logDebug(`Attempting registration with email: ${email}`);
+       
+       if (!email || !password) {
+           authError.textContent = "Please enter both email and password";
+           return;
+       }
+       
+       if (password.length < 6) {
+           authError.textContent = "Password should be at least 6 characters";
+           return;
+       }
+       
+       showLoading();
+       
+       try {
+           firebase.auth().createUserWithEmailAndPassword(email, password)
+               .then((userCredential) => {
+                   emailInput.value = '';
+                   passwordInput.value = '';
+                   authError.textContent = '';
+                   logDebug(`User registered: ${userCredential.user.uid}`);
+               })
+               .catch((error) => {
+                   authError.textContent = error.message;
+                   logDebug(`Registration error: ${error.message}`);
+                   hideLoading();
+               });
+       } catch (error) {
+           logDebug(`Critical registration error: ${error.message}`);
+           authError.textContent = "Registration failed: " + error.message;
+           hideLoading();
+       }
+   }
+   
+   // Logout function
+   function logout() {
+       showLoading();
+       
+       logDebug("Attempting to log out...");
+       
+       try {
+           firebase.auth().signOut()
+               .then(() => {
+                   logDebug('User logged out successfully');
+               })
+               .catch((error) => {
+                   logDebug(`Logout error: ${error.message}`);
+                   hideLoading();
+               });
+       } catch (error) {
+           logDebug(`Critical logout error: ${error.message}`);
+           hideLoading();
+       }
+   }
+   
+   // Initialize default data for new users
+   function initializeDefaultData() {
+       logDebug('Initializing default data');
+       
+       tasks = [
+           {
+               id: 1,
+               name: "Morning Mix > Shower > Robe",
+               category: "Physical Cultivation",
+               completed: false
+           },
+           {
+               id: 2,
+               name: "Phone in jail",
+               category: "Mental Disciplines",
+               completed: false
+           },
+           {
+               id: 3,
+               name: "Check email and calendar for Rogue items",
+               category: "Physical Cultivation",
+               completed: false
+           },
+           {
+               id: 4,
+               name: "Practice: Reread last paragraph of novel",
+               category: "Creative Force",
+               completed: false
+           },
+           {
+               id: 5,
+               name: "Morning blah blah pages",
+               category: "Creative Force",
+               completed: false
+           }
+       ];
+       
+       // Initialize empty story notes
+       storyNotes = [];
+       
+       // Set last active date to now
+       lastActiveDate = new Date().toISOString();
+       
+       // Initialize calendar data
+       calendarData = {};
+       
+       // Save initial data to Firebase
+       saveDataToFirebase();
+   }
+   
+   // Initialize the app with user data
+   function initializeApp(uid) {
+       userId = uid;
+       logDebug(`Initializing app for user: ${userId}`);
+       
+       // Set current date
+       const today = new Date();
+       if (currentDateEl) {
+           currentDateEl.textContent = today.toLocaleDateString('en-US', { 
+               weekday: 'long', 
+               year: 'numeric', 
+               month: 'long', 
+               day: 'numeric' 
+           });
+       }
+       
+       // Load user data from Firebase
+       loadDataFromFirebase();
+       
+       // Add event listeners for app functionality
+       const addTaskBtn = document.getElementById('addTaskBtn');
+       const newTaskInput = document.getElementById('newTaskInput');
+       const newTaskCategory = document.getElementById('newTaskCategory');
+       const resetTasksBtn = document.getElementById('resetTasksBtn');
+       
+       if (addTaskBtn) {
+           addTaskBtn.addEventListener('click', addTask);
+           logDebug("Added event listener for addTaskBtn");
+       }
+       
+       if (resetTasksBtn) {
+           resetTasksBtn.addEventListener('click', resetTasks);
+           logDebug("Added event listener for resetTasksBtn");
+       }
+       
+       // Setup intention listeners
+       setupIntentionListeners();
+       
+       // Setup story notes listeners
+       setupStoryNotesListeners();
+       
+       // Add event listener to task input for Enter key
+       if (newTaskInput) {
+           newTaskInput.addEventListener('keypress', (e) => {
+               if (e.key === 'Enter') {
+                   addTask();
+               }
+           });
+           logDebug("Added keypress event listener for newTaskInput");
+       }
+       
+       // Setup calendar navigation
+       setupCalendarNavigation();
+       
+       // Update Jedi header
+       updateJediHeader();
+       
+       logDebug('App initialization complete');
+   }
+   
+   function setupCalendarNavigation() {
+       const prevMonthBtn = document.getElementById('prevMonth');
+       const nextMonthBtn = document.getElementById('nextMonth');
+       
+       if (prevMonthBtn) {
+           prevMonthBtn.addEventListener('click', () => {
+               displayedMonth--;
+               if (displayedMonth < 0) {
+                   displayedMonth = 11;
+                   displayedYear--;
+               }
+               renderCalendar(displayedMonth, displayedYear);
+           });
+       }
+       
+       if (nextMonthBtn) {
+           nextMonthBtn.addEventListener('click', () => {
+               displayedMonth++;
+               if (displayedMonth > 11) {
+                   displayedMonth = 0;
+                   displayedYear++;
+               }
+               renderCalendar(displayedMonth, displayedYear);
+           });
+       }
+   }
+   
+   function saveIntention() {
+       dailyIntention = document.getElementById('dailyIntention').innerText.trim();
+       intentionSuccess = document.getElementById('intentionSuccess').value.trim();
+       
+       logDebug(`Daily intention updated: ${dailyIntention}`);
+       
+       // Save to Firebase
+       saveDataToFirebase();
+   }
+
+   function setupIntentionListeners() {
+       // Set up scene listeners
+       setupSceneListeners();
+       
+       // Set up deadline listeners
+       setupDeadlineListeners();
+   }
+   
+   function setupSceneListeners() {
+       const sceneSwitchEl = document.getElementById('sceneTypeSwitch');
+       const headFieldsEl = document.getElementById('headSceneFields');
+       const tailFieldsEl = document.getElementById('tailSceneFields');
+       const saveSceneBtn = document.getElementById('saveScene');
+       const tagInput = document.getElementById('tagInput');
+       const tagDropdown = document.getElementById('tagDropdown');
+       const tagOptions = document.querySelectorAll('.tag-option');
+       const selectedTagsContainer = document.getElementById('selectedTags');
+       
+       if (tagInput && tagDropdown) {
+           // Show dropdown when input is clicked
+           tagInput.addEventListener('click', function() {
+               tagDropdown.classList.add('show');
+           });
+           
+           // Close dropdown when clicking outside
+           document.addEventListener('click', function(e) {
+               if (!tagInput.contains(e.target) && !tagDropdown.contains(e.target)) {
+                   tagDropdown.classList.remove('show');
+               }
+           });
+           
+           // Add tag when option is clicked
+           tagOptions.forEach(option => {
+               option.addEventListener('click', function() {
+                   const value = this.getAttribute('data-value');
+                   const text = this.textContent;
+                   
+                   logDebug('Tag clicked: ' + value + ' - ' + text);
+                   
+                   // Add if not already selected
+                   if (!selectedTags.includes(value)) {
+                       selectedTags.push(value);
+                       addTagToDisplay(value, text);
+                       this.classList.add('selected');
+                       logDebug('Added tag: ' + value + ', selectedTags now: ' + JSON.stringify(selectedTags));
+                   } else {
+                       // Remove if already selected
+                       selectedTags = selectedTags.filter(tag => tag !== value);
+                       removeTagFromDisplay(value);
+                       this.classList.remove('selected');
+                       logDebug('Removed tag: ' + value + ', selectedTags now: ' + JSON.stringify(selectedTags));
+                   }
+               });
+           });
+       }
+       
+       // Toggle between Head and Tail scene
+       if (sceneSwitchEl) {
+           sceneSwitchEl.addEventListener('change', function() {
+               if (this.checked) {
+                   // Show Tail fields, hide Head fields
+                   headFieldsEl.style.display = 'none';
+                   tailFieldsEl.style.display = 'block';
+               } else {
+                   // Show Head fields, hide Tail fields
+                   headFieldsEl.style.display = 'block';
+                   tailFieldsEl.style.display = 'none';
+               }
+           });
+       }
+       
+       // Save scene data
+       if (saveSceneBtn) {
+           saveSceneBtn.addEventListener('click', function() {
+               logDebug('Save button clicked');
+               saveSceneData();
+               
+               // After saving, run our debug check
+               setTimeout(debugCheckFirebaseData, 1000); // Check 1 second after save
+           });
+       }
+   }
+   
+   function saveSceneData() {
+       logDebug('===== SAVE SCENE DATA FUNCTION CALLED =====');
+       
+       // Get common field values - REMOVED synopsis, time, weather, characters
+       const sceneTitle = document.getElementById('sceneTitle').value;
+       
+       // Log the current state of selectedTags
+       logDebug('Current selectedTags: ' + JSON.stringify(selectedTags));
+       
+       // Determine scene type
+       const isHeadScene = !document.getElementById('sceneTypeSwitch').checked;
+       
+       // Get scene-specific field values
+       let specificFields = {};
+       
+       if (isHeadScene) {
+           specificFields = {
+               goal: document.getElementById('sceneGoal').value,
+               conflict: document.getElementById('sceneConflict').value,
+               disaster: document.getElementById('sceneDisaster').value
+           };
+       } else {
+           specificFields = {
+               reaction: document.getElementById('sceneReaction').value,
+               dilemma: document.getElementById('sceneDilemma').value,
+               decision: document.getElementById('sceneDecision').value
+           };
+       }
+       
+       // Create scene data object - REMOVED synopsis, time, weather, characters
+       const sceneData = {
+           type: isHeadScene ? 'head' : 'tail',
+           title: sceneTitle,
+           psychKeys: [...selectedTags], // Make a copy
+           deadline: sceneDeadline, // Add deadline to saved data
+           specificFields: specificFields
+       };
+       
+       // Log the full scene data for debugging
+       logDebug('Complete scene data object: type=' + sceneData.type + 
+               ', title=' + sceneData.title + 
+               ', psychKeys=' + JSON.stringify(sceneData.psychKeys));
+       
+       // Replace dailyIntention in your data structure
+       dailyIntention = JSON.stringify(sceneData);
+       
+       // Log the stringify result
+       logDebug('Stringified dailyIntention: ' + dailyIntention.substring(0, 100) + '...');
+       
+       // Save to Firebase
+       saveDataToFirebase();
+       
+       logDebug('Scene data saved to Firebase');
+       
+       // Show confirmation
+       alert('Scene saved successfully!');
+   }
+   
+   function loadSceneData(sceneData) {
+       if (!sceneData) return;
+       
+       try {
+           // Safely set values using a helper function
+           const safeSetValue = (id, value) => {
+               const el = document.getElementById(id);
+               if (el) el.value = value || '';
+           };
+           
+           // Set common fields - REMOVED synopsis, time, weather, characters
+           safeSetValue('sceneTitle', sceneData.title);
+         
+           // Load deadline
+           if (sceneData.deadline) {
+               sceneDeadline = sceneData.deadline;
+               const deadlineInput = document.getElementById('sceneDeadline');
+               if (deadlineInput) {
+                   deadlineInput.value = sceneDeadline;
+                   updateDeadlineStatus();
+               }
+           }
+           
+           // Handle psychKeys properly - this is the fixed section
+           if (sceneData.psychKeys && Array.isArray(sceneData.psychKeys)) {
+               // Log what we're loading
+               logDebug('Loading psychKeys from scene data: ' + JSON.stringify(sceneData.psychKeys));
+               
+               // Clear selectedTags array
+               selectedTags = [];
+               
+               // Clear existing tags from the UI
+               const selectedTagsContainer = document.getElementById('selectedTags');
+               if (selectedTagsContainer) {
+                   selectedTagsContainer.innerHTML = '';
+                   
+                   // Remove selected class from all tag options
+                   document.querySelectorAll('.tag-option.selected').forEach(option => {
+                       option.classList.remove('selected');
+                   });
+                   
+                   // Add each tag
+                   sceneData.psychKeys.forEach(value => {
+                       const option = document.querySelector(`.tag-option[data-value="${value}"]`);
+                       if (option) {
+                           selectedTags.push(value);
+                           addTagToDisplay(value, option.textContent);
+                           option.classList.add('selected');
+                           logDebug('Added tag during load: ' + value);
+                       } else {
+                           logDebug('Could not find option for tag: ' + value);
+                       }
+                   });
+                   
+                   // Log the final state of the tags array
+                   logDebug('Final loaded tags: ' + JSON.stringify(selectedTags));
+               } else {
+                   logDebug('selectedTagsContainer not found during load');
+               }
+           }
+           
+           // Safely set checkbox
+           const switchEl = document.getElementById('sceneTypeSwitch');
+           if (switchEl) switchEl.checked = sceneData.type === 'tail';
+           
+           // Safely toggle visibility
+           const headEl = document.getElementById('headSceneFields');
+           const tailEl = document.getElementById('tailSceneFields');
+           
+           if (headEl && tailEl) {
+               if (sceneData.type === 'head') {
+                   headEl.style.display = 'block';
+                   tailEl.style.display = 'none';
+               } else {
+                   headEl.style.display = 'none';
+                   tailEl.style.display = 'block';
+               }
+           }
+           
+           // Set scene-specific fields
+           if (sceneData.specificFields) {
+               if (sceneData.type === 'head') {
+                   safeSetValue('sceneGoal', sceneData.specificFields.goal);
+                   safeSetValue('sceneConflict', sceneData.specificFields.conflict);
+                   safeSetValue('sceneDisaster', sceneData.specificFields.disaster);
+               } else {
+                   safeSetValue('sceneReaction', sceneData.specificFields.reaction);
+                   safeSetValue('sceneDilemma', sceneData.specificFields.dilemma);
+                   safeSetValue('sceneDecision', sceneData.specificFields.decision);
+               }
+           }
+           
+           logDebug('Scene data loaded successfully');
+       } catch (error) {
+           logDebug(`Error loading scene data: ${error.message}`);
+           console.error('Error loading scene data:', error);
+       }
+   }
+   
+   // Function to load data from Firebase
+   function loadDataFromFirebase() {
+       showLoading();
+       logDebug(`Loading data for user: ${userId}`);
+       
+       // Check if userId is valid
+       if (!userId) {
+           logDebug('No user ID available');
+           hideLoading();
+           alert('No user is logged in. Please log in to load your data.');
+           return;
+       }
+       
+       try {
+           firebase.database().ref(`users/${userId}`).once('value')
+               .then((snapshot) => {
+                   const userData = snapshot.val();
+                   logDebug(`User data loaded: ${userData ? 'success' : 'no data found'}`);
+                   
+                   if (userData) {
+                       // Process tasks
+                       if (userData.tasks) {
+                           if (!Array.isArray(userData.tasks)) {
+                               const tasksArray = [];
+                               Object.keys(userData.tasks).forEach(key => {
+                                   if (userData.tasks[key] !== null) {
+                                       tasksArray.push(userData.tasks[key]);
+                                   }
+                               });
+                               tasks = tasksArray;
+                           } else {
+                               tasks = userData.tasks.filter(task => task !== null);
+                           }
+                           logDebug(`Loaded ${tasks.length} tasks`);
+                       } else {
+                           tasks = [];
+                           logDebug('No tasks found, initializing empty array');
+                       }
+                       
+                       // Process last active date
+                       if (userData.lastActiveDate) {
+                           lastActiveDate = userData.lastActiveDate;
+                           logDebug(`Last active date: ${lastActiveDate}`);
+                       } else {
+                           lastActiveDate = new Date().toISOString();
+                           logDebug('No last active date found, using current date');
+                       }
+                       
+                       // Process daily intention (which might now be scene data)
+                       if (userData.dailyIntention) {
+                           dailyIntention = userData.dailyIntention;
+                           
+                           // Try to parse it as scene data
+                           try {
+                               const sceneData = JSON.parse(dailyIntention);
+                               if (sceneData.type) {
+                                   // It's scene data, load it into the scene interface
+                                   loadSceneData(sceneData);
+                               }
+                           } catch (error) {
+                               // It's not JSON, probably old format
+                               logDebug("Daily intention is not in scene data format");
+                           }
+                       }
+
+                       // We don't need intention success anymore, but we'll keep it in the data model
+                       if (userData.intentionSuccess) {
+                           intentionSuccess = userData.intentionSuccess;
+                       }
+                     
+                       // Load story notes
+                       if (userData.storyNotes && Array.isArray(userData.storyNotes)) {
+                           storyNotes = userData.storyNotes.filter(note => note !== null);
+                           logDebug(`Loaded ${storyNotes.length} story notes`);
+                       } else {
+                           storyNotes = [];
+                           logDebug('No story notes found, initializing empty array');
+                       }
+                     
+                       // Load scene deadline
+                       if (userData.sceneDeadline) {
+                           sceneDeadline = userData.sceneDeadline;
+                           logDebug('Loaded scene deadline: ' + sceneDeadline);
+                       } else {
+                           sceneDeadline = null;
+                           logDebug('No scene deadline found');
+                       }
+                       
+                       // Process calendar data
+                       if (userData.calendarData) {
+                           calendarData = userData.calendarData;
+                           logDebug('Loaded calendar data');
+                       } else {
+                           calendarData = {};
+                           logDebug('No calendar data found, initializing empty object');
+                       }
+                   } else {
+                       // Initialize new user with default data
+                       initializeDefaultData();
+                   }
+                   
+                   // Render UI with loaded data
+                   renderTasks();
+                   renderStoryNotes();
+                   renderCalendar(displayedMonth, displayedYear);
+                   updateStreakInfo();
+                   updateJediHeader();
+                   
+                   hideLoading();
+               })
+               .catch((error) => {
+                   console.error("Firebase loading error:", error);
+                   logDebug(`Firebase loading error: ${error.message}`);
+                   
+                   // Initialize with default data if error
+                   initializeDefaultData();
+                   renderTasks();
+                   renderStoryNotes();
+                   renderCalendar(displayedMonth, displayedYear);
+                   updateJediHeader();
+                   
+                   hideLoading();
+                   
+                   // Show error to user
+                   alert(`Error loading your data: ${error.message}. Default data has been loaded.`);
+               });
+       } catch (error) {
+           logDebug(`Critical error loading data: ${error.message}`);
+           hideLoading();
+           
+           // Initialize with default data if error
+           initializeDefaultData();
+           renderTasks();
+           renderStoryNotes();
+           renderCalendar(displayedMonth, displayedYear);
+           updateJediHeader();
+           
+           alert(`Critical error loading data: ${error.message}. Default data has been loaded.`);
+       }
+   }
+   
+   // Function to save data to Firebase
+   function saveDataToFirebase() {
+       logDebug('Saving data to Firebase...');
+       
+       // Check if userId is valid
+       if (!userId) {
+           logDebug('No user ID available, cannot save data');
+           alert('No user is logged in. Please log in to save your data.');
+           return;
+       }
+       
+       // Create a clean copy of the data to save
+       // This prevents Firebase from rejecting the data due to circular references
+       const cleanTasks = tasks.map(task => ({
+           id: task.id,
+           name: task.name,
+           category: task.category,
+           completed: task.completed
+       }));
+       
+       const cleanStoryNotes = storyNotes.map(note => ({
+           id: note.id,
+           text: note.text,
+           completed: note.completed,
+           createdAt: note.createdAt
+       }));
+       
+       // Update the last active date
+       lastActiveDate = new Date().toISOString();
+       
+       // Firebase reference for this user's data
+       const userRef = firebase.database().ref(`users/${userId}`);
+       
+       // Data to save
+       const dataToSave = {
+           tasks: cleanTasks,
+           storyNotes: cleanStoryNotes,
+           dailyIntention: dailyIntention,
+           intentionSuccess: intentionSuccess,
+           sceneDeadline: sceneDeadline, // Add deadline to saved data
+           lastActiveDate: lastActiveDate,
+           calendarData: calendarData,
+           lastUpdated: new Date().toISOString()
+       };
+       
+       try {
+           // CHECKING DAILY INTENTION BEFORE SAVE
+           logDebug('CHECKING DAILY INTENTION BEFORE SAVE:');
+           try {
+               const intentionCheck = JSON.parse(dataToSave.dailyIntention);
+               logDebug('- Parsed successfully: ' + (intentionCheck ? 'yes' : 'no'));
+               logDebug('- Has psychKeys: ' + (intentionCheck.psychKeys ? 'yes' : 'no'));
+               logDebug('- psychKeys content: ' + JSON.stringify(intentionCheck.psychKeys || []));
+           } catch (e) {
+               logDebug('- ERROR parsing dailyIntention: ' + e.message);
+           }
+           
+           // Save data with error handling
+           userRef.set(dataToSave)
+               .then(() => {
+                   logDebug('Data saved successfully');
+               })
+               .catch((error) => {
+                   console.error("Firebase saving error:", error);
+                   logDebug(`Firebase saving error: ${error.message}`);
+                   alert(`Error saving your data: ${error.message}. Your changes may not be persisted.`);
+               });
+       } catch (error) {
+           logDebug(`Critical error saving data: ${error.message}`);
+           alert(`Critical error saving data: ${error.message}`);
+       }
+   }
+   
+   // Modified renderTasks function to add .completed class to completed tasks
+   function renderTasks() {
+       if (!taskTableBody) {
+           logDebug('Task table body element not found');
+           return;
+       }
+       
+       taskTableBody.innerHTML = '';
+       logDebug('Rendering tasks list');
+       
+       // Find the first uncompleted task
+       const nextTaskIndex = tasks.findIndex(task => !task.completed);
+       
+       tasks.forEach((task, index) => {
+           const row = document.createElement('tr');
+           row.className = 'task-row';
+           
+           // Set category class
+           const categoryClass = task.category.toLowerCase().replace(/\s+/g, '-');
+           row.classList.add(categoryClass);
+           
+           // Add completed class for checked tasks
+           if (task.completed) {
+               row.classList.add('completed');
+           }
+           
+           // Mark next task
+           if (index === nextTaskIndex) {
+               row.classList.add('next-up');
+           }
+           
+           // Task name cell
+           const taskCell = document.createElement('td');
+           taskCell.className = 'task-cell';
+           
+           // Add "NEXT UP" badge if it's the next uncompleted task
+           if (index === nextTaskIndex) {
+               const badge = document.createElement('span');
+               badge.className = 'next-up-badge';
+               badge.textContent = 'NEXT UP';
+               taskCell.appendChild(badge);
+           }
+           
+           const taskName = document.createElement('span');
+           taskName.className = 'task-name';
+           taskName.textContent = task.name;
+           taskName.setAttribute('contenteditable', 'true');
+           
+           // Add the completed class to the task name element as well
+           if (task.completed) {
+               taskName.style.textDecoration = 'line-through';
+               taskName.style.opacity = '0.6';
+           }
+           
+           taskName.addEventListener('blur', (e) => {
+               updateTaskName(task.id, e.target.textContent);
+           });
+           taskCell.appendChild(taskName);
+           row.appendChild(taskCell);
+           
+           // Checkbox cell
+           const checkboxCell = document.createElement('td');
+           checkboxCell.className = 'task-cell checkbox-cell';
+           const checkbox = document.createElement('input');
+           checkbox.type = 'checkbox';
+           checkbox.className = 'custom-checkbox';
+           checkbox.checked = task.completed;
+           checkbox.addEventListener('change', () => {
+               toggleTaskComplete(task.id);
+           });
+           checkboxCell.appendChild(checkbox);
+           row.appendChild(checkboxCell);
+           
+           // Category select cell
+           const categoryCell = document.createElement('td');
+           categoryCell.className = 'task-cell category-cell';
+           const categorySelect = document.createElement('select');
+           categorySelect.className = 'category-select';
+           
+           const categories = ['Physical Cultivation', 'Mental Disciplines', 'Professional Mastery', 'Creative Force'];
+           categories.forEach(category => {
+               const option = document.createElement('option');
+               option.value = category;
+               option.textContent = category;
+               option.selected = category === task.category;
+               categorySelect.appendChild(option);
+           });
+           
+           categorySelect.addEventListener('change', (e) => {
+               updateTaskCategory(task.id, e.target.value);
+           });
+           
+           categoryCell.appendChild(categorySelect);
+           row.appendChild(categoryCell);
+           
+           // Delete button cell
+           const actionCell = document.createElement('td');
+           actionCell.className = 'task-cell action-cell';
+           const deleteBtn = document.createElement('button');
+           deleteBtn.className = 'delete-btn';
+           deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
+           deleteBtn.addEventListener('click', () => {
+               deleteTask(task.id);
+           });
+           actionCell.appendChild(deleteBtn);
+           row.appendChild(actionCell);
+           
+           taskTableBody.appendChild(row);
+       });
+       
+       // Update Jedi header after rendering tasks
+       updateJediHeader();
+   }
+   
+   // Function to show task completion animation
+   function showTaskCompletionAnimation(category) {
+       // Set the overlay class based on the category
+       taskCompleteOverlay.className = 'task-complete-overlay';
+       taskCompleteOverlay.classList.add(category.toLowerCase().replace(/\s+/g, '-'));
+       
+       // Set message based on category
+       let message = 'TASK COMPLETE!';
+       switch(category) {
+           case 'Mental Disciplines':
+               message = 'MIND STRENGTHENED!';
+               break;
+           case 'Creative Force':
+               message = 'CREATIVE FORCE FLOWS!';
+               break;
+           case 'Physical Cultivation':
+               message = 'PHYSICAL POWER UP!';
+               break;
+           case 'Professional Mastery':
+               message = 'MASTERY ACHIEVED!';
+               break;
+       }
+       taskCompleteMessage.textContent = message;
+       
+       // Show the animation
+       taskCompleteOverlay.classList.add('active');
+       
+       // Hide after animation completes
+       setTimeout(() => {
+           taskCompleteOverlay.classList.remove('active');
+       }, 1500);
+   }
+   
+   function toggleTaskComplete(taskId) {
+       const taskIndex = tasks.findIndex(task => task.id === taskId);
+       if (taskIndex !== -1) {
+           const wasCompleted = tasks[taskIndex].completed;
+           tasks[taskIndex].completed = !wasCompleted;
+           
+           logDebug(`Task ${taskId} ${wasCompleted ? 'uncompleted' : 'completed'}`);
+           
+           // If task was just completed, show animation
+           if (!wasCompleted) {
+               const category = tasks[taskIndex].category;
+               showTaskCompletionAnimation(category);
+           }
+           
+           // Update calendar data for today
+           updateCalendarData();
+           
+           // Save to Firebase
+           saveDataToFirebase();
+           
+           // Re-render tasks and update header
+           renderTasks();
+           updateJediHeader();
+       }
+   }
+   
+   function updateTaskName(taskId, newName) {
+       const taskIndex = tasks.findIndex(task => task.id === taskId);
+       if (taskIndex !== -1) {
+           tasks[taskIndex].name = newName;
+           logDebug(`Updated task ${taskId} name: ${newName}`);
+           
+           // Save to Firebase
+           saveDataToFirebase();
+       }
+   }
+   
+   function updateTaskCategory(taskId, newCategory) {
+       const taskIndex = tasks.findIndex(task => task.id === taskId);
+       if (taskIndex !== -1) {
+           tasks[taskIndex].category = newCategory;
+           logDebug(`Updated task ${taskId} category: ${newCategory}`);
+           
+           // Save to Firebase
+           saveDataToFirebase();
+           
+           // Re-render tasks to update styling
+           renderTasks();
+       }
+   }
+   
+   function deleteTask(taskId) {
+       tasks = tasks.filter(task => task.id !== taskId);
+       logDebug(`Deleted task ${taskId}`);
+       
+       // Save to Firebase
+       saveDataToFirebase();
+       
+       // Re-render tasks
+       renderTasks();
+       
+       // Update calendar data
+       updateCalendarData();
+   }
+   
+   function addTask() {
+       const newTaskInput = document.getElementById('newTaskInput');
+       const newTaskCategory = document.getElementById('newTaskCategory');
+       
+       if (!newTaskInput || !newTaskCategory) {
+           logDebug('Task input elements not found');
+           return;
+       }
+       
+       const taskName = newTaskInput.value.trim();
+       const category = newTaskCategory.value;
+       
+       if (taskName) {
+           // Generate new ID (just using the next number in sequence for simplicity)
+           const newId = tasks.length > 0 ? Math.max(...tasks.map(task => task.id)) + 1 : 1;
+           
+           const newTask = {
+               id: newId,
+               name: taskName,
+               category: category,
+               completed: false
+           };
+           
+           tasks.push(newTask);
+           logDebug(`Added new task: ${JSON.stringify(newTask)}`);
+           
+           // Clear input
+           newTaskInput.value = '';
+           
+           // Save to Firebase
+           saveDataToFirebase();
+           
+           // Re-render tasks
+           renderTasks();
+           
+           // Update calendar data
+           updateCalendarData();
+       }
+   }
+   
+   // Reset All Tasks button functionality
+   function resetTasks() {
+       if (confirm("Are you sure you want to reset all tasks? This will mark all tasks as incomplete.")) {
+           logDebug('Resetting all tasks to incomplete');
+           
+           // Reset all tasks to incomplete
+           tasks.forEach(task => {
+               task.completed = false;
+           });
+           
+           // Update calendar data for today
+           updateCalendarData();
+           
+           // Save to Firebase
+           saveDataToFirebase();
+           
+           // Re-render tasks
+           renderTasks();
+           updateJediHeader();
+           
+           logDebug('Tasks reset complete');
+       }
+   }
+   
+   // Jedi Header Functions
+   function updateJediHeader() {
+       // Get DOM elements
+       const progressBar = document.getElementById('dailyProgressBar');
+       const progressSummary = document.getElementById('progressSummary');
+       const tasksSummary = document.getElementById('tasksSummary');
+       
+       if (!progressBar || !progressSummary || !tasksSummary) {
+           logDebug('Jedi header elements not found');
+           return;
+       }
+       
+       // Calculate overall progress
+       const totalTasks = tasks.length;
+       const completedTasks = tasks.filter(task => task.completed).length;
+       const progressPercentage = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
+       
+       // Update progress bar
+       progressBar.style.width = `${progressPercentage}%`;
+       
+       // Set lightsaber color based on most recent completed task category
+       let dominantColor = 'var(--mental-color)';
+       
+       // Find the most recently completed task (if any)
+       const completedTasksList = tasks.filter(task => task.completed);
+       if (completedTasksList.length > 0) {
+           const lastCompletedTask = completedTasksList[completedTasksList.length - 1];
+           
+           switch (lastCompletedTask.category) {
+               case 'Mental Disciplines':
+                   dominantColor = 'var(--mental-color)';
+                   break;
+               case 'Creative Force':
+                   dominantColor = 'var(--creative-color)';
+                   break;
+               case 'Physical Cultivation':
+                   dominantColor = 'var(--physical-color)';
+                   break;
+               case 'Professional Mastery':
+                   dominantColor = 'var(--professional-color)';
+                   break;
+           }
+       }
+       
+       progressBar.style.background = `linear-gradient(90deg, rgba(255,255,255,0.9), ${dominantColor})`;
+       progressBar.style.boxShadow = `0 0 8px ${dominantColor}, 0 0 15px ${dominantColor}`;
+       
+       // Add pulsing animation for the lightsaber glow
+       progressBar.style.animation = `lightsaberHum 2s infinite`;
+       
+       // Update progress text
+       progressSummary.textContent = `Daily progress: ${progressPercentage}%`;
+       tasksSummary.textContent = `${completedTasks}/${totalTasks} tasks completed`;
+       
+       logDebug(`Updated Jedi header: ${progressPercentage}% progress`);
+   }
+   
+   // Calendar Functions
+   function updateCalendarData() {
+       const today = new Date();
+       const dateStr = formatDateKey(today);
+       
+       // Count completed and total tasks
+       const totalTasks = tasks.length;
+       const completedTasks = tasks.filter(task => task.completed).length;
+       
+       // Calculate completion percentage
+       const percentage = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
+       
+       // Store the data for today
+       calendarData[dateStr] = {
+           percentage: percentage,
+           completedTasks: completedTasks,
+           totalTasks: totalTasks,
+           isComplete: percentage === 100
+       };
+       
+       // Update the calendar display
+       renderCalendar(displayedMonth, displayedYear);
+       
+       // Update streak information
+       updateStreakInfo();
+   }
+   
+   // Helper function to format date as YYYY-MM-DD for storage
+   function formatDateKey(date) {
+       const year = date.getFullYear();
+       const month = String(date.getMonth() + 1).padStart(2, '0');
+       const day = String(date.getDate()).padStart(2, '0');
+       return `${year}-${month}-${day}`;
+   }
+   
+   // Function to render the calendar
+   function renderCalendar(month, year) {
+       const calendarGrid = document.getElementById('calendarGrid');
+       const calendarMonthYear = document.getElementById('calendarMonthYear');
+       
+       if (!calendarGrid || !calendarMonthYear) {
+           logDebug('Calendar elements not found');
+           return;
+       }
+       
+       // Clear existing calendar
+       calendarGrid.innerHTML = '';
+       
+       // Set month/year display
+       const monthNames = [
+           'January', 'February', 'March', 'April', 'May', 'June', 
+           'July', 'August', 'September', 'October', 'November', 'December'
+       ];
+       calendarMonthYear.textContent = `${monthNames[month]} ${year}`;
+       
+       // Get first day of month
+       const firstDay = new Date(year, month, 1);
+       const startingDayOfWeek = firstDay.getDay(); // 0 = Sunday, 6 = Saturday
+       
+       // Get number of days in month
+       const daysInMonth = new Date(year, month + 1, 0).getDate();
+       
+       // Get today's date for highlighting
+       const today = new Date();
+       const todayDateStr = formatDateKey(today);
+       
+       // Previous month days
+       const prevMonthDays = new Date(year, month, 0).getDate();
+       for (let i = 0; i < startingDayOfWeek; i++) {
+           const dayNum = prevMonthDays - startingDayOfWeek + i + 1;
+           const prevMonth = month === 0 ? 11 : month - 1;
+           const prevYear = month === 0 ? year - 1 : year;
+           const dateKey = formatDateKey(new Date(prevYear, prevMonth, dayNum));
+           
+           addCalendarDay(calendarGrid, dayNum, dateKey, true, false);
+       }
+       
+       // Current month days
+       for (let i = 1; i <= daysInMonth; i++) {
+           const dateKey = formatDateKey(new Date(year, month, i));
+           const isToday = dateKey === todayDateStr;
+           
+           addCalendarDay(calendarGrid, i, dateKey, false, isToday);
+       }
+       
+       // Next month days to fill calendar
+       const totalCells = 42; // 6 rows of 7 days
+       const remainingCells = totalCells - (daysInMonth + startingDayOfWeek);
+       const isFuture = (year > today.getFullYear()) || 
+                       (year === today.getFullYear() && month > today.getMonth());
+       
+       for (let i = 1; i <= remainingCells; i++) {
+           const nextMonth = month === 11 ? 0 : month + 1;
+           const nextYear = month === 11 ? year + 1 : year;
+           const dateKey = formatDateKey(new Date(nextYear, nextMonth, i));
+           
+           addCalendarDay(calendarGrid, i, dateKey, true, false, isFuture);
+       }
+   }
+   
+   // Helper function to add a day to the calendar
+   function addCalendarDay(calendarGrid, dayNum, dateKey, isOtherMonth, isToday, isFuture = false) {
+       const dayDiv = document.createElement('div');
+       dayDiv.className = 'calendar-day';
+       
+       if (isOtherMonth) {
+           dayDiv.classList.add('other-month');
+       }
+       
+       if (isToday) {
+           dayDiv.classList.add('today');
+       }
+       
+       if (isFuture) {
+           dayDiv.classList.add('future');
+       }
+       
+       // Day number
+       const dayNumDiv = document.createElement('div');
+       dayNumDiv.className = 'day-number';
+       dayNumDiv.textContent = dayNum;
+       dayDiv.appendChild(dayNumDiv);
+       
+       // Completion percentage
+       const percentageDiv = document.createElement('div');
+       percentageDiv.className = 'completion-percentage';
+       
+       // Check if we have data for this day
+       if (calendarData[dateKey]) {
+           const percentage = calendarData[dateKey].percentage;
+           percentageDiv.textContent = `${percentage}%`;
+           
+           // Apply color class based on percentage
+           if (percentage === 100) {
+               dayDiv.classList.add('completion-100');
+               
+               // Add star for 100% completion
+               const starIcon = document.createElement('i');
+               starIcon.className = 'fas fa-star complete-star';
+               dayDiv.appendChild(starIcon);
+           } else if (percentage >= 75) {
+               dayDiv.classList.add('completion-75');
+           } else if (percentage >= 50) {
+               dayDiv.classList.add('completion-50');
+           } else if (percentage > 0) {
+               dayDiv.classList.add('completion-25');
+           } else {
+               dayDiv.classList.add('completion-0');
+           }
+       } else {
+           percentageDiv.textContent = '-';
+           dayDiv.classList.add('completion-0');
+       }
+       
+       dayDiv.appendChild(percentageDiv);
+       calendarGrid.appendChild(dayDiv);
+       
+       // Add click event to show details
+       dayDiv.addEventListener('click', () => {
+           showDayDetails(dateKey, dayNum);
+       });
+   }
+   
+   // Function to show day details when clicking on a calendar day
+   function showDayDetails(dateKey, dayNum) {
+       if (calendarData[dateKey]) {
+           const data = calendarData[dateKey];
+           const message = `Day ${dayNum}: ${data.completedTasks}/${data.totalTasks} tasks completed (${data.percentage}%)`;
+           alert(message);
+       } else {
+           alert(`No data available for this day.`);
+       }
+   }
+   
+   // Function to update streak information
+   function updateStreakInfo() {
+       const currentStreakEl = document.getElementById('currentStreak');
+       const longestStreakEl = document.getElementById('longestStreak');
+       
+       if (!currentStreakEl || !longestStreakEl) {
+           logDebug('Streak elements not found');
+           return;
+       }
+       
+       // Calculate streaks
+       const { currentStreak, longestStreak } = calculateStreaks();
+       
+       // Update the display
+       currentStreakEl.textContent = `${currentStreak} day${currentStreak !== 1 ? 's' : ''}`;
+       longestStreakEl.textContent = `${longestStreak} day${longestStreak !== 1 ? 's' : ''}`;
+   }
+   
+   // Function to calculate current and longest streaks, excluding weekends
+   function calculateStreaks() {
+       const today = new Date();
+       const todayDateStr = formatDateKey(today);
+       const currentHour = today.getHours();
+       
+       // Sort all dates from calendar data
+       const dates = Object.keys(calendarData)
+           .filter(dateKey => {
+               const keyDate = new Date(dateKey + 'T00:00:00');
+               // Only count days where tasks were 100% completed
+               return keyDate <= today && calendarData[dateKey].isComplete;
+           })
+           .sort();
+       
+       if (dates.length === 0) {
+           return { currentStreak: 0, longestStreak: 0 };
+       }
+       
+       // Calculate longest streak (weekdays only)
+       let longestStreak = 0;
+       let currentLongest = 0;
+       let previousDate = null;
+       
+       for (let i = 0; i < dates.length; i++) {
+           const currentDate = new Date(dates[i] + 'T00:00:00');
+           const dayOfWeek = currentDate.getDay(); // 0 = Sunday, 6 = Saturday
+           
+           // Skip weekends for streak calculation
+           if (dayOfWeek === 0 || dayOfWeek === 6) {
+               continue;
+           }
+           
+           if (!previousDate) {
+               // First weekday in the sequence
+               currentLongest = 1;
+               previousDate = currentDate;
+               longestStreak = Math.max(longestStreak, currentLongest);
+               continue;
+           }
+           
+           // Check if this is the next business day
+           const isNextBusinessDay = isConsecutiveBusinessDay(previousDate, currentDate);
+           
+           if (isNextBusinessDay) {
+               currentLongest++;
+               longestStreak = Math.max(longestStreak, currentLongest);
+           } else {
+               currentLongest = 1;
+           }
+           
+           previousDate = currentDate;
+       }
+       
+       // Calculate current streak (weekdays only)
+       let currentStreak = 0;
+       let checkDate = new Date(today);
+       let foundIncomplete = false;
+       
+       // If today is a weekend, start checking from Friday
+       while (checkDate.getDay() === 0 || checkDate.getDay() === 6) {
+           checkDate = new Date(checkDate.getTime() - 24 * 60 * 60 * 1000);
+       }
+       
+       // Check backwards until we find a weekday that wasn't completed
+       while (!foundIncomplete) {
+           const dateStr = formatDateKey(checkDate);
+           const dayOfWeek = checkDate.getDay();
+           
+           // Skip weekends
+           if (dayOfWeek !== 0 && dayOfWeek !== 6) {
+               const isToday = dateStr === todayDateStr;
+               
+               if (calendarData[dateStr] && calendarData[dateStr].isComplete) {
+                   currentStreak++;
+               } else if (isToday) {
+                   // Special handling for today - don't break streak unless it's late in the day
+                   // and still not complete, OR if tasks have been started but not finished
+                   const todayData = calendarData[dateStr];
+                   
+                   if (!todayData) {
+                       // No data for today yet - don't break streak in the morning
+                       if (currentHour < 18) {
+                           // It's still early, don't break the streak
+                           // Continue checking previous days
+                       } else {
+                           // It's late and no progress made - break streak
+                           foundIncomplete = true;
+                           break;
+                       }
+                   } else if (todayData.percentage === 0) {
+                       // Tasks were reset but not started - don't break streak in the morning
+                       if (currentHour < 18) {
+                           // It's still early, don't break the streak
+                       } else {
+                           // It's late and no progress made - break streak
+                           foundIncomplete = true;
+                           break;
+                       }
+                   } else {
+                       // Some progress made but not complete - don't break streak yet
+                       // This allows for work-in-progress days
+                   }
+               } else {
+                   // Previous day wasn't completed - break streak
+                   foundIncomplete = true;
+                   break;
+               }
+           }
+           
+           // Go to previous day
+           checkDate = new Date(checkDate.getTime() - 24 * 60 * 60 * 1000);
+       }
+       
+       return { currentStreak, longestStreak };
+   }
+
+   // Helper function to check if two dates are consecutive business days
+   function isConsecutiveBusinessDay(date1, date2) {
+       // Calculate days between (excluding weekends)
+       let count = 0;
+       let currentDate = new Date(date1);
+       currentDate.setDate(currentDate.getDate() + 1); // Start from next day
+       
+       // Count business days between date1 and date2
+       while (currentDate < date2) {
+           const dayOfWeek = currentDate.getDay();
+           if (dayOfWeek !== 0 && dayOfWeek !== 6) { // Not weekend
+               count++;
+           }
+           currentDate.setDate(currentDate.getDate() + 1);
+       }
+       
+       // Check if date2 is the next business day after date1
+       return count === 0 && date1 < date2;
+   }
+   
+   // Debug function to check Firebase data
+   function debugCheckFirebaseData() {
+       if (!userId) {
+           logDebug('No user ID available for debug check');
+           return;
+       }
+       
+       logDebug('DIRECT FIREBASE CHECK STARTED');
+       
+       firebase.database().ref(`users/${userId}`).once('value')
+           .then((snapshot) => {
+               const userData = snapshot.val();
+               logDebug('Got user data: ' + (userData ? 'yes' : 'no'));
+               
+               if (userData && userData.dailyIntention) {
+                   logDebug('Raw dailyIntention exists: ' + (userData.dailyIntention ? 'yes' : 'no'));
+                   logDebug('Length: ' + userData.dailyIntention.length);
+                   
+                   try {
+                       const parsedIntention = JSON.parse(userData.dailyIntention);
+                       logDebug('Parsed intention: ' + (parsedIntention ? 'success' : 'null'));
+                       logDebug('Has type: ' + (parsedIntention.type ? 'yes' : 'no'));
+                       logDebug('psychKeys in Firebase: ' + JSON.stringify(parsedIntention.psychKeys || []));
+                   } catch (e) {
+                       logDebug('Parse error: ' + e.message);
+                   }
+               } else {
+                   logDebug('dailyIntention not found in userData');
+               }
+               
+               logDebug('DIRECT FIREBASE CHECK COMPLETE');
+           })
+           .catch(error => {
+               logDebug('Firebase check error: ' + error.message);
+           });
+   }
+   
+   // Auth state change listener with better error handling
+   try {
+       firebase.auth().onAuthStateChanged((user) => {
+           if (user) {
+               // User is signed in
+               userId = user.uid;
+               const email = user.email;
+               
+               logDebug(`Auth state changed: User logged in (${userId})`);
+               
+               // Update UI for logged in state
+               authContainer.style.display = 'none';
+               appContent.style.display = 'block';
+               
+               // Update user display
+               const initial = email.charAt(0).toUpperCase();
+               userInitial.textContent = initial;
+               displayName.textContent = email;
+               
+               // Load user data
+               initializeApp(userId);
+           } else {
+               // User is signed out
+               logDebug('Auth state changed: User logged out');
+               
+               // Reset all data
+               tasks = [];
+               storyNotes = [];
+               lastActiveDate = null;
+               userId = null;
+               
+               // Update UI for logged out state
+               authContainer.style.display = 'block';
+               appContent.style.display = 'none';
+               hideLoading();
+           }
+       });
+   } catch (error) {
+       logDebug(`Error setting up auth state change listener: ${error.message}`);
+       console.error('Auth state change listener error:', error);
+   }
+   
+   // Initialize when DOM is fully loaded
+   document.addEventListener('DOMContentLoaded', function() {
+       console.log('DOM fully loaded');
+       logDebug('DOM content loaded event fired');
+       
+       // Force debug visibility
+       if (document.getElementById('debugSection')) {
+           document.getElementById('debugSection').style.display = 'block';
+       }
+       
+       // Add direct event listeners for auth buttons
+       if (loginBtn) {
+           loginBtn.addEventListener('click', login);
+           logDebug('Login button event listener added');
+       }
+       
+       if (registerBtn) {
+           registerBtn.addEventListener('click', register);
+           logDebug('Register button event listener added');
+       }
+       
+       if (logoutBtn) {
+           logoutBtn.addEventListener('click', logout);
+           logDebug('Logout button event listener added');
+       }
+       
+       // Add event listeners for Enter key on auth inputs
+       if (emailInput) {
+           emailInput.addEventListener('keypress', (e) => {
+               if (e.key === 'Enter') login();
+           });
+       }
+       
+       if (passwordInput) {
+           passwordInput.addEventListener('keypress', (e) => {
+               if (e.key === 'Enter') login();
+           });
+       }
+       
+       logDebug('Event listeners added');
+   });
 </script>
 </body>
 </html>
